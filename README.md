@@ -3,6 +3,8 @@
 허강범(HEO GANGBEOM) — UI 디자이너 · 프론트엔드 빌더 포트폴리오.
 코드로 직접 짓는 인터페이스. 가로 갤러리(GSAP + ScrollTrigger + Lenis) 기반의 정적 사이트입니다.
 
+**🌐 라이브 사이트 → [hur235923-create.github.io/my-portfolio](https://hur235923-create.github.io/my-portfolio/)**
+
 ## 작업물 (Works)
 
 | # | 프로젝트 | 설명 | 스택 |
@@ -24,6 +26,9 @@ python -m http.server 8000
 ## 배포
 
 GitHub Pages로 배포됩니다 (`main` 브랜치 루트).
+👉 **https://hur235923-create.github.io/my-portfolio/**
+
+`main`에 push하면 자동으로 재배포됩니다.
 
 ## 기술
 
