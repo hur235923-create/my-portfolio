@@ -224,6 +224,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .work__object::after {
   content: ""; position: absolute; inset: 0; clip-path: var(--shape);
   background: color-mix(in oklab, var(--aubergine) 14%, transparent);
+  pointer-events: none; /* 틴트 오버레이가 이미지 링크 클릭을 막지 않도록 통과시킴 */
 }
 
 /* 도형 카탈로그 — 기하 + 유기 혼합 */
