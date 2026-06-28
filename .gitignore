@@ -1,0 +1,9 @@
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Temp / verification artifacts
+_verify*.mjs
+_verify*.png
+*.log

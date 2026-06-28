@@ -1,0 +1,347 @@
+/* ============================================================
+   PORTFOLIO — "갤러리 워크"
+   SPARK: 텍스트가 실루엣을 껴안는다 (shape-outside) × 덜어냄의 침묵
+   ============================================================ */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+/* ---------- Tokens (Colormind: 틴티드 뉴트럴) ---------- */
+:root {
+  --paper:     #fbfdfc;
+  --paper-dim: #eef1ee;
+  --ink:       #282a28;
+  --green:     #23411e;
+  --aubergine: #4a2e2d;
+  --slate:     #556161;
+  --line:      color-mix(in oklab, var(--ink) 16%, transparent);
+  --line-soft: color-mix(in oklab, var(--ink) 8%, transparent);
+
+  --mono: ui-monospace, "SF Mono", "Menlo", "Cascadia Code", monospace;
+  --sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+
+  --panel-pad: clamp(1.6rem, 5vw, 6rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.62;
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.05rem);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+:where(body, h1, h2, h3, h4, h5, h6, p, li, a, span, button, label, dt, dd, blockquote, figcaption) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+h1, h2, h3 { text-wrap: balance; line-height: 1.04; letter-spacing: -0.02em; font-weight: 700; }
+p { text-wrap: pretty; }
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 2px; }
+
+.skip-link {
+  position: fixed; top: -100%; left: 1rem; z-index: 200;
+  background: var(--ink); color: var(--paper);
+  padding: 0.6rem 1rem; border-radius: 4px;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ============================================================
+   HUD (상단 고정)
+   ============================================================ */
+.hud {
+  position: fixed; inset: 0 0 auto 0; z-index: 90;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 2fr) 1fr;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: 1.1rem clamp(1.2rem, 4vw, 2.4rem);
+  /* 고정 HUD 뒤로 트랙이 흐르므로 backdrop-filter 금지(매 프레임 re-paint). 불투명 배경 사용 */
+  background: color-mix(in oklab, var(--paper) 94%, var(--ink));
+  border-bottom: 1px solid var(--line-soft);
+}
+.hud__brand { display: flex; align-items: baseline; gap: 0.7rem; }
+.hud__mark {
+  font-family: var(--sans); font-weight: 800; letter-spacing: 0.02em;
+  font-size: 1.1rem; color: var(--ink);
+}
+.hud__role {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.22em;
+  color: var(--slate);
+}
+.hud__progress {
+  position: relative; height: 2px; width: 100%;
+  background: var(--line); border-radius: 2px; overflow: hidden;
+}
+.hud__progress-fill {
+  position: absolute; inset: 0; transform-origin: left center;
+  transform: scaleX(0);
+  background: var(--green);
+}
+.hud__meta { display: flex; align-items: center; justify-content: flex-end; gap: clamp(0.8rem, 2vw, 1.6rem); }
+.hud__counter { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--slate); }
+.hud__index-btn {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.22em;
+  padding: 0.45rem 0.9rem; border: 1px solid var(--ink); border-radius: 999px;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+.hud__index-btn:hover { background: var(--ink); color: var(--paper); }
+
+/* ============================================================
+   INDEX 오버레이
+   ============================================================ */
+.index {
+  position: fixed; inset: 0; z-index: 150;
+  background: var(--ink); color: var(--paper);
+  padding: clamp(1.6rem, 6vw, 4.5rem);
+  display: flex; flex-direction: column;
+  opacity: 0; transition: opacity 0.5s var(--ease);
+}
+.index[hidden] { display: none; }
+.index.is-open { opacity: 1; }
+.index__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 1.4rem; border-bottom: 1px solid color-mix(in oklab, var(--paper) 20%, transparent);
+}
+.index__title, .index__close {
+  font-family: var(--mono); letter-spacing: 0.24em; font-size: 0.8rem;
+}
+.index__close:hover { color: color-mix(in oklab, var(--paper) 60%, var(--green)); }
+.index__list { list-style: none; margin-top: auto; }
+.index__list button {
+  width: 100%; display: flex; align-items: baseline; gap: clamp(1rem, 4vw, 3rem);
+  padding: clamp(0.5rem, 1.6vh, 1.1rem) 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--paper) 12%, transparent);
+  text-align: left; transition: padding-left 0.45s var(--ease), color 0.3s var(--ease);
+}
+.index__list button:hover { padding-left: 1.4rem; color: color-mix(in oklab, var(--paper) 55%, var(--green)); }
+.index__no { font-family: var(--mono); font-size: 0.8rem; color: color-mix(in oklab, var(--paper) 50%, transparent); }
+.index__label {
+  font-size: clamp(1.3rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em;
+  display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
+}
+.index__label em {
+  font-style: normal; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+  color: color-mix(in oklab, var(--paper) 45%, transparent);
+}
+
+/* ============================================================
+   가로 갤러리 트랙
+   ============================================================ */
+.viewport { position: relative; height: 100vh; overflow: hidden; }
+.track { display: flex; height: 100vh; width: max-content; will-change: transform; }
+
+.panel {
+  position: relative; flex: 0 0 100vw; height: 100vh;
+  padding: clamp(5rem, 9vh, 7rem) var(--panel-pad) var(--panel-pad);
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
+}
+.panel + .panel { border-left: 1px solid var(--line-soft); }
+
+.work__no, .intro__kicker {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.26em;
+  color: var(--green); margin-bottom: 1.1rem; display: inline-block;
+}
+
+/* ---------- INTRO ---------- */
+.panel--intro {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-rows: auto 1fr auto auto;
+  column-gap: clamp(1rem, 4vw, 3rem);
+  align-content: center;
+}
+.intro__kicker { grid-column: 1; grid-row: 1; }
+.intro__title {
+  grid-column: 1; grid-row: 2; align-self: center;
+  font-size: clamp(3rem, 11vw, 9.5rem); line-height: 0.92; font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.intro__line { display: block; }
+.intro__line--accent {
+  color: var(--green); font-style: italic; font-weight: 700;
+  margin-left: clamp(0.5rem, 6vw, 5rem); /* 들여쓰기 비대칭 */
+}
+.intro__sub {
+  grid-column: 1; grid-row: 3; align-self: end;
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.18em; color: var(--slate);
+  margin-top: 1.5rem;
+}
+.intro__body {
+  grid-column: 1; grid-row: 4; align-self: start;
+  max-width: 34ch; color: var(--slate); margin-top: 1rem;
+}
+.intro__hint {
+  grid-column: 2; grid-row: 4; align-self: end; justify-self: end;
+  display: flex; align-items: center; gap: 0.8rem;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; color: var(--slate);
+}
+.intro__hint-line { width: clamp(2rem, 6vw, 5rem); height: 1px; background: var(--slate); }
+.intro__object {
+  grid-column: 2; grid-row: 1 / 3; align-self: stretch;
+  position: relative; overflow: hidden;
+  clip-path: polygon(18% 0%, 100% 4%, 96% 82%, 70% 100%, 0% 92%, 6% 28%);
+}
+.intro__object img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.3) contrast(1.04); }
+.intro__object::after {
+  content: ""; position: absolute; inset: 0;
+  background: color-mix(in oklab, var(--green) 16%, transparent);
+}
+
+/* ---------- WORK (shape-outside DARING_MOVE) ---------- */
+.panel--work { display: block; padding-top: clamp(6rem, 16vh, 11rem); }
+
+.work__object {
+  float: left;
+  width: clamp(220px, 38vw, 520px);
+  margin: 0 clamp(2rem, 4vw, 4.5rem) 1rem 0;
+  position: relative;
+  /* 이미지는 유기적 clip-path 모양을 유지하되, 텍스트(라벨·제목·본문)는
+     도형 윤곽이 아니라 이미지 사각 영역 오른쪽에서 '일관된 x'로 시작하도록
+     shape-outside 는 쓰지 않는다 → 모든 WORK 패널의 텍스트 정렬이 동일해진다 */
+  clip-path: var(--shape);
+}
+.work__object img {
+  width: 100%; aspect-ratio: 9 / 11; object-fit: cover;
+  filter: grayscale(0.32) contrast(1.04);
+}
+.work__object::after {
+  content: ""; position: absolute; inset: 0; clip-path: var(--shape);
+  background: color-mix(in oklab, var(--aubergine) 14%, transparent);
+}
+
+/* 도형 카탈로그 — 기하 + 유기 혼합 */
+[data-shape="blob-a"] .work__object { --shape: polygon(50% 0%, 78% 6%, 95% 28%, 100% 55%, 88% 82%, 62% 98%, 35% 96%, 12% 80%, 2% 52%, 8% 24%, 28% 6%); }
+[data-shape="blob-b"] .work__object { --shape: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%); }
+[data-shape="blob-c"] .work__object { --shape: polygon(20% 0%, 100% 8%, 92% 60%, 70% 100%, 18% 92%, 0% 40%); }
+[data-shape="blob-d"] .work__object { --shape: polygon(50% 0%, 80% 6%, 96% 30%, 100% 100%, 0% 100%, 4% 30%, 20% 6%); }
+[data-shape="blob-e"] .work__object { --shape: polygon(0% 12%, 100% 0%, 100% 88%, 0% 100%); }
+[data-shape="blob-f"] .work__object { --shape: polygon(30% 2%, 70% 0%, 100% 35%, 90% 70%, 100% 100%, 55% 92%, 10% 100%, 0% 50%, 12% 18%); }
+
+/* 텍스트 컨테이너 폭은 플로트보다 충분히 넓어야 글이 실루엣을 감싼다.
+   (좁히면 우측 잔여폭이 1글자가 되어 세로로 끊긴다) */
+.work__text { max-width: min(100%, 1080px); }
+.work__title {
+  font-size: clamp(2rem, 5.2vw, 4.2rem); margin-bottom: 1.6rem; font-weight: 800;
+}
+.work__title span {
+  display: block; font-family: var(--mono); font-size: 0.7rem; font-weight: 400;
+  letter-spacing: 0.2em; color: var(--slate); margin-top: 0.7rem;
+}
+.work__desc { color: color-mix(in oklab, var(--ink) 88%, var(--paper)); margin-bottom: 2rem; }
+.work__meta { display: flex; flex-wrap: wrap; gap: 1.4rem 2.6rem; }
+.work__meta dt { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; color: var(--slate); margin-bottom: 0.3rem; }
+.work__meta dd { font-size: 0.92rem; font-weight: 600; }
+
+/* 실제 작업물 링크 */
+.work__object a { display: block; }
+.work__object img { transition: transform 0.7s var(--ease); }
+.work__object a:hover img { transform: scale(1.045); }
+.work__cta {
+  display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 2.2rem;
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding-bottom: 0.35rem; border-bottom: 1.5px solid var(--ink);
+  transition: gap 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.work__cta span { transition: transform 0.3s var(--ease); }
+.work__cta:hover { opacity: 0.7; }
+.work__cta:hover span { transform: translate(0.2rem, -0.2rem); }
+
+/* ---------- PROFILE + CONTACT ---------- */
+.panel--profile {
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  column-gap: clamp(2rem, 6vw, 6rem); align-content: center;
+}
+.profile__title { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 1.8rem; }
+.profile__bio { max-width: 46ch; color: var(--slate); margin-bottom: 2.6rem; }
+.profile__skills { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.skill-row {
+  display: grid; grid-template-columns: 5.5rem 1fr; gap: 1.2rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--line);
+}
+.skill-row__key { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; color: var(--green); padding-top: 0.2rem; }
+.skill-row__val { font-weight: 600; }
+
+.profile__col--contact { display: flex; flex-direction: column; justify-content: center; }
+.contact__lead { font-size: clamp(1.4rem, 3vw, 2.1rem); font-weight: 700; line-height: 1.25; margin-bottom: 2rem; }
+.contact__mail {
+  font-size: clamp(1.1rem, 2.4vw, 1.7rem); font-weight: 700; color: var(--green);
+  border-bottom: 2px solid var(--green); padding-bottom: 0.2rem; align-self: flex-start;
+  transition: opacity 0.3s var(--ease);
+}
+.contact__mail:hover { opacity: 0.6; }
+.contact__links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem 1.8rem; margin: 2.4rem 0; }
+.contact__links a {
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em;
+  display: inline-flex; gap: 0.3rem; padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--line); transition: border-color 0.3s var(--ease);
+}
+.contact__links a:hover { border-color: var(--ink); }
+.contact__foot { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; color: var(--slate); margin-top: auto; }
+
+/* ============================================================
+   Reveal (JS 토글) — transform/opacity 만
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(28px); }
+.reveal.is-in { opacity: 1; transform: none; transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+
+/* ============================================================
+   반응형 — 모바일: 세로 스택 폴백 (가로 스크롤/shape-outside 해제)
+   ============================================================ */
+@media (max-width: 860px) {
+  .viewport { height: auto; overflow: visible; }
+  .track { flex-direction: column; width: 100%; height: auto; will-change: auto; }
+  .panel { flex: none; width: 100%; height: auto; min-height: auto; justify-content: flex-start; padding: clamp(5.5rem, 14vw, 7rem) clamp(1.4rem, 6vw, 2.4rem) clamp(3rem, 12vw, 5rem); }
+  .panel + .panel { border-left: none; border-top: 1px solid var(--line-soft); }
+
+  .hud { grid-template-columns: auto 1fr auto; gap: 1rem; }
+  .hud__role { display: none; }
+
+  .panel--intro { display: flex; flex-direction: column; gap: 1.4rem; }
+  .intro__line--accent { margin-left: 0; }
+  .intro__object { order: -1; width: 100%; height: 48vw; align-self: stretch; }
+  .intro__body, .intro__sub { max-width: none; margin-top: 1rem; }
+  .intro__hint { justify-self: start; }
+
+  /* shape-outside 해제 → 오브제 위, 텍스트 아래 세로 스택 */
+  .panel--work { display: flex; flex-direction: column; }
+  .work__object { float: none; width: 78%; max-width: 360px; margin: 0 0 2rem; }
+
+  .panel--profile { display: flex; flex-direction: column; gap: 3rem; }
+  .profile__col--contact { justify-content: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .work__object { width: 100%; }
+  .skill-row { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+/* ============================================================
+   접근성 — 모션 최소화: 모든 reveal 즉시 가시
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .viewport { height: auto; overflow: visible; }
+  .track { flex-direction: column; width: 100%; height: auto; will-change: auto; }
+  .panel { flex: none; width: 100%; height: auto; min-height: auto; justify-content: flex-start; padding: clamp(5.5rem, 12vw, 7rem) var(--panel-pad) clamp(3rem, 8vw, 5rem); }
+  .panel + .panel { border-left: none; border-top: 1px solid var(--line-soft); }
+  .panel--work { display: flex; flex-direction: column; }
+  .work__object { float: none; width: min(70%, 360px); margin: 0 0 2rem; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  * { scroll-behavior: auto !important; }
+}

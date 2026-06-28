@@ -1,0 +1,260 @@
+/* ============================================================
+   YAMAHA — Make Waves · SPARK redesign
+   라이트 갤러리 + 여백의 적극성 + 겹침의 미학 + MatCap 크롬 사운드 링
+   ============================================================ */
+
+:root {
+  --paper: #ece8e1;
+  --paper-2: #e3ded5;
+  --ink: #15131a;
+  --ink-soft: #4f4b58;
+  --violet: #4b1e78;
+  --violet-lit: #7b46c4;
+  --line: rgba(21, 19, 26, 0.16);
+  --plate: rgba(236, 232, 225, 0.62);
+
+  --sans: "Noto Sans KR", system-ui, sans-serif;
+  --maxw: 1440px;
+  --pad: clamp(1.25rem, 5vw, 6rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:where(body, h1, h2, h3, h4, p, li, a, span, button, blockquote, figcaption, cite, address) {
+  word-break: keep-all; overflow-wrap: break-word;
+}
+
+html { background: var(--paper); -webkit-text-size-adjust: 100%; }
+
+body {
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+em { font-style: normal; color: var(--violet); }
+h1, h2, h3 { text-wrap: balance; font-weight: 300; line-height: 1.02; letter-spacing: -0.03em; }
+p { text-wrap: pretty; }
+
+::selection { background: var(--violet); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--violet-lit); outline-offset: 4px; }
+
+.skip { position: fixed; top: -120px; left: 1rem; z-index: 300; background: var(--violet); color: #fff; padding: 0.7rem 1.1rem; border-radius: 6px; transition: top 0.25s var(--ease); }
+.skip:focus { top: 1rem; }
+
+/* ---------- 떠다니는 사운드 링 (3D 캔버스) ---------- */
+#ring {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  z-index: 0; pointer-events: none; display: block;
+}
+
+/* 콘텐츠는 캔버스 위에 — 단, 배경은 비워 링이 여백으로 비쳐 보이게 */
+.top, main, .hero, .foot, .ruler { position: relative; z-index: 2; }
+
+/* ---------- 상단 미니 브랜드 ---------- */
+.top {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: clamp(1.2rem, 2.5vw, 2rem) var(--pad);
+  mix-blend-mode: normal;
+}
+.top__brand { font-weight: 500; letter-spacing: 0.42em; font-size: 1.05rem; }
+.top__tag { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+.top__tag span { color: var(--violet); }
+
+/* ---------- 우측 주파수 눈금 = 내비/진행 ---------- */
+.ruler {
+  position: fixed; right: clamp(1rem, 2.6vw, 2.4rem); top: 50%; transform: translateY(-50%);
+  z-index: 50; display: flex; align-items: center; gap: 1rem;
+}
+.ruler__line { position: relative; width: 1px; height: 38vh; background: var(--line); overflow: hidden; }
+.ruler__line i { position: absolute; inset: 0; background: var(--violet); transform: scaleY(0); transform-origin: top; }
+.ruler__list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+.ruler__list a {
+  display: flex; align-items: center; gap: 0.55rem;
+  font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+  transition: color 0.3s var(--ease);
+}
+.ruler__list a::before {
+  content: attr(data-i); font-variant-numeric: tabular-nums; color: var(--line);
+  transition: color 0.3s var(--ease);
+}
+.ruler__list a span { opacity: 0; transform: translateX(6px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); }
+.ruler__list a:hover span, .ruler__list a.is-active span { opacity: 1; transform: none; }
+.ruler__list a:hover, .ruler__list a.is-active { color: var(--ink); }
+.ruler__list a.is-active::before { color: var(--violet); }
+
+/* ============================================================
+   HERO — 비대칭, 좌측 정렬 (중앙정렬 히어로 탈피)
+   ============================================================ */
+.hero {
+  min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+  padding: 0 var(--pad);
+  max-width: 78%;
+}
+.hero__eyebrow { font-size: clamp(0.8rem, 1.3vw, 1rem); letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: clamp(1rem, 2vw, 1.8rem); }
+.hero__title { font-weight: 200; font-size: clamp(4rem, 17vw, 17rem); letter-spacing: -0.05em; }
+.hero__title .ln { display: block; overflow: hidden; }
+.hero__title .ln > span { display: inline-block; }
+.hero__title .ln--indent { padding-left: clamp(2rem, 14vw, 14rem); }
+.hero__title .ln--indent > span { color: var(--violet); font-weight: 300; }
+.hero__note { margin-top: clamp(1.5rem, 3vw, 2.6rem); max-width: 42ch; font-size: clamp(1rem, 1.4vw, 1.2rem); color: var(--ink-soft); }
+.hero__meta { margin-top: clamp(2rem, 4vw, 3.4rem); display: flex; align-items: center; gap: 1rem; font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+.hero__bar { position: relative; width: 84px; height: 1px; background: var(--line); overflow: hidden; }
+.hero__bar::after { content: ""; position: absolute; inset: 0; background: var(--violet); transform-origin: left; animation: slide 2.4s var(--ease) infinite; }
+@keyframes slide { 0% { transform: scaleX(0); } 50% { transform: scaleX(1); } 50.01% { transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
+
+/* ============================================================
+   섹션 공통
+   ============================================================ */
+.section { padding: clamp(7rem, 16vh, 16rem) var(--pad); max-width: var(--maxw); margin-inline: auto; }
+.mark { font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: clamp(2.5rem, 6vw, 5rem); display: flex; align-items: center; gap: 0.7rem; }
+.mark i { color: var(--violet); font-style: normal; font-weight: 500; }
+
+.big { font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 300; }
+.mid { font-size: clamp(2rem, 4.4vw, 3.6rem); font-weight: 300; }
+.huge { font-size: clamp(2.8rem, 9.5vw, 9rem); font-weight: 200; letter-spacing: -0.045em; }
+.lead { font-size: clamp(1.15rem, 1.8vw, 1.45rem); color: var(--ink); line-height: 1.55; }
+
+/* 반투명 페이퍼 플레이트 (겹침의 미학 — backdrop-filter 미사용: 움직이는 캔버스 위 repaint 회피) */
+.reson__text, .inst__caption, .quote, .legacy__cols > div {
+  background: var(--plate);
+  border: 1px solid var(--line);
+}
+
+/* 사진 플레이트 */
+.plate { position: relative; overflow: hidden; background: var(--paper-2); border: 1px solid var(--line); }
+.plate img { width: 100%; height: 100%; object-fit: cover; }
+.plate figcaption {
+  position: absolute; left: 0; bottom: 0; padding: 0.6rem 0.9rem;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--paper); background: rgba(21, 19, 26, 0.62);
+}
+
+/* ============================================================
+   RESONANCE
+   ============================================================ */
+.reson__grid { display: grid; grid-template-columns: 1.1fr 0.7fr; gap: clamp(2rem, 6vw, 7rem); align-items: center; }
+.reson__text { padding: clamp(1.8rem, 3.5vw, 3rem); }
+.reson__text .big { margin-bottom: 1.6rem; }
+.reson__text .lead { margin-bottom: 1.2rem; }
+.reson__text p:not(.lead) { color: var(--ink-soft); }
+.plate--tall { aspect-ratio: 3 / 4.4; }
+
+/* ============================================================
+   INSTRUMENTS — 비대칭 좌/우 교차, 거대한 여백
+   ============================================================ */
+.inst__item {
+  display: grid; align-items: center; gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: 1fr 1fr;
+  margin-block: clamp(6rem, 14vh, 13rem);
+}
+.inst__item:first-of-type { margin-top: 0; }
+.inst__item[data-side="left"] { grid-template-columns: 0.95fr 0.85fr; }
+.inst__item[data-side="right"] { grid-template-columns: 0.85fr 0.95fr; }
+.inst__item[data-side="right"] .plate { order: 2; }
+.inst__item[data-side="right"] .inst__caption { order: 1; }
+.inst__item .plate { aspect-ratio: 4 / 5; }
+.inst__item[data-side="left"] .plate { justify-self: start; }
+.inst__item[data-side="right"] .plate { justify-self: end; }
+/* 캡션이 사진 위로 살짝 겹치도록 */
+.inst__caption { padding: clamp(1.6rem, 3vw, 2.6rem); align-self: center; }
+.inst__item[data-side="left"] .inst__caption { margin-left: clamp(-4rem, -4vw, -1rem); }
+.inst__item[data-side="right"] .inst__caption { margin-right: clamp(-4rem, -4vw, -1rem); text-align: right; }
+.inst__no { font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--violet); display: block; margin-bottom: 0.9rem; }
+.inst__caption .mid { margin-bottom: 1.1rem; }
+.inst__caption p { color: var(--ink-soft); max-width: 38ch; }
+.inst__item[data-side="right"] .inst__caption p { margin-left: auto; }
+
+/* 누끼 제품(피아노/기타)은 잘리지 않게 contain */
+.inst__item:first-of-type .plate img,
+.inst__item:last-of-type .plate img { object-fit: contain; padding: clamp(1rem, 3vw, 2.5rem); }
+
+/* ============================================================
+   VOICES — 사회적 증거 (숫자 + 인용)
+   ============================================================ */
+.voices__head { margin-bottom: clamp(3rem, 7vw, 5.5rem); }
+.figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); border-block: 1px solid var(--line); padding-block: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(3rem, 7vw, 5rem); }
+.figure strong { display: block; font-size: clamp(2.6rem, 6.5vw, 5.5rem); font-weight: 200; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.figure span { display: block; margin-top: 0.7rem; font-size: 0.92rem; color: var(--ink-soft); }
+.quotes { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 2rem); }
+.quote { padding: clamp(1.6rem, 3vw, 2.4rem); display: flex; flex-direction: column; justify-content: space-between; gap: 1.6rem; }
+.quote:nth-child(2) { transform: translateY(clamp(1rem, 4vw, 3rem)); }
+.quote blockquote { font-size: clamp(1.05rem, 1.6vw, 1.3rem); font-weight: 300; line-height: 1.5; }
+.quote cite { font-style: normal; font-size: 0.82rem; letter-spacing: 0.06em; color: var(--violet); }
+
+/* ============================================================
+   LEGACY
+   ============================================================ */
+.legacy__inner { display: grid; gap: clamp(2.5rem, 6vw, 5rem); }
+.legacy__cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.2rem, 3vw, 2.5rem); max-width: 880px; }
+.legacy__cols > div { padding: clamp(1.6rem, 3vw, 2.4rem); }
+.card-h { font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 400; margin-bottom: 0.8rem; }
+.legacy__cols p { color: var(--ink-soft); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot { padding: clamp(4rem, 10vh, 9rem) var(--pad) 2.5rem; max-width: var(--maxw); margin-inline: auto; }
+.foot__make { font-size: clamp(3rem, 13vw, 12rem); font-weight: 200; letter-spacing: -0.05em; line-height: 0.9; }
+.foot__make { color: var(--violet); }
+.foot__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; align-items: flex-start; margin-top: clamp(2rem, 5vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+.foot__brand { font-weight: 500; letter-spacing: 0.4em; font-size: 1.1rem; }
+.foot__addr { font-style: normal; color: var(--ink-soft); font-size: 0.92rem; line-height: 1.7; }
+.foot__sns { display: flex; gap: 1.4rem; }
+.foot__sns a { font-size: 0.85rem; letter-spacing: 0.08em; position: relative; }
+.foot__sns a::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px; background: var(--violet); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+.foot__sns a:hover::after { transform: scaleX(1); }
+.foot__copy { margin-top: 2.5rem; font-size: 0.78rem; color: var(--ink-soft); letter-spacing: 0.04em; }
+
+/* ============================================================
+   리빌 게이팅 — JS-off 가독 (translate 히든은 GSAP 소유)
+   ============================================================ */
+.js .hero__title .ln > span { opacity: 0; }
+.js .plate img { opacity: 0; }
+.js :is(.reson__text, .inst__caption, .figure, .quote, .legacy .huge, .legacy__cols > div, .voices__head) {
+  opacity: 0; transform: translateY(30px);
+}
+
+/* ============================================================
+   반응형
+   ============================================================ */
+@media (max-width: 900px) {
+  .ruler { display: none; }
+  .hero { max-width: 100%; }
+  .reson__grid { grid-template-columns: 1fr; }
+  .plate--tall { aspect-ratio: 4 / 3; max-height: 70vh; }
+  .inst__item, .inst__item[data-side="left"], .inst__item[data-side="right"] { grid-template-columns: 1fr; gap: 0; }
+  .inst__item[data-side="right"] .plate { order: 0; }
+  .inst__item[data-side="right"] .inst__caption { order: 0; text-align: left; }
+  .inst__caption, .inst__item[data-side="left"] .inst__caption, .inst__item[data-side="right"] .inst__caption { margin: -2.5rem 1rem 0; }
+  .inst__item[data-side="right"] .inst__caption p { margin-left: 0; }
+  .figures { grid-template-columns: 1fr; gap: 1.6rem; text-align: left; }
+  .quotes { grid-template-columns: 1fr; }
+  .quote:nth-child(2) { transform: none; }
+}
+
+@media (max-width: 520px) {
+  .top__tag { display: none; }
+  .hero__title .ln--indent { padding-left: 2rem; }
+}
+
+/* ============================================================
+   reduced-motion — 모든 리빌 즉시 가시
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__title .ln > span, .js .plate img,
+  .js :is(.reson__text, .inst__caption, .figure, .quote, .legacy .huge, .legacy__cols > div, .voices__head) {
+    opacity: 1 !important; transform: none !important;
+  }
+  .hero__bar::after { animation: none; }
+  #ring { display: none; }
+  * { scroll-behavior: auto !important; }
+}

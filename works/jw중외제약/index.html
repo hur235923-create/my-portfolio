@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JW중외제약 — 생명이 흐르게 하다</title>
+  <meta name="description" content="1945년 한 방울의 수액에서 시작된 흐름. 깊고 고요한 심해처럼, JW중외제약은 80년간 생명을 흐르게 해왔습니다. 헤리티지와 혁신신약, AI 신약개발 플랫폼 JWave." />
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip" href="#glance">본문으로 건너뛰기</a>
+
+  <!-- 프리로더 — 한 방울이 심연으로 -->
+  <div class="loader" id="loader">
+    <span class="loader__drop" aria-hidden="true"></span>
+    <span class="loader__num" aria-hidden="true"><i id="loadNum">0</i></span>
+  </div>
+
+  <!-- 세로 타이포 강(江) — 좌측을 관통하는 흐름 (DARING_MOVE) -->
+  <div class="river" aria-hidden="true">
+    <span class="river__text">생명이 흐르게 하다 · KEEPING LIFE IN FLOW · SINCE 1945</span>
+    <span class="river__gauge"><i id="riverFill"></i></span>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" data-link>JW<b>중외제약</b></a>
+    <nav class="nav__menu" aria-label="주요 메뉴">
+      <a href="#heritage" data-link>Heritage</a>
+      <a href="#rnd" data-link>R&amp;D</a>
+      <a href="#products" data-link>Products</a>
+      <a href="#sustain" data-link>Sustainability</a>
+    </nav>
+    <span class="nav__since" data-haptic>Est. 1945</span>
+  </header>
+
+  <span id="top"></span>
+
+  <main>
+    <!-- 01 HERO — 심해, 비대칭, 다층 패럴랙스 -->
+    <section class="hero" id="hero" aria-label="인트로">
+      <div class="hero__layers" aria-hidden="true">
+        <div class="hero__layer hero__layer--img" data-depth="0.18" style="background-image:url('img/deep.jpg')"></div>
+        <div class="hero__layer hero__layer--veil"></div>
+        <div class="hero__layer hero__layer--glow" data-depth="0.4"></div>
+      </div>
+
+      <p class="hero__mark" data-depth="0.6">JW중외제약</p>
+
+      <div class="hero__copy">
+        <p class="hero__eyebrow">심해의 고요처럼, 보이지 않는 곳에서</p>
+        <h1 class="hero__title">
+          <span class="l">한 방울이</span>
+          <span class="l"><em>생명</em>을 잇다</span>
+        </h1>
+        <p class="hero__en">A single drop becomes a lifetime of flow.</p>
+      </div>
+
+      <p class="hero__foot">1945 — 국내 최초의 수액. 그 한 방울에서 흐름이 시작됐습니다.</p>
+      <span class="hero__scroll" aria-hidden="true">SCROLL<i></i></span>
+    </section>
+
+    <!-- 02 GLANCE — 회사 현황, 어긋난 그리드 + 세로 라벨 -->
+    <section class="glance" id="glance" aria-labelledby="glance-title">
+      <p class="vlabel" aria-hidden="true">AT A GLANCE</p>
+      <p class="en en--top reveal">Not numbers, but the depth of our flow</p>
+      <h2 class="glance__title st" id="glance-title">숫자가 아니라,<br /><em>흐름</em>의 깊이입니다.</h2>
+
+      <div class="glance__grid">
+        <figure class="glance__media" data-depth="0.12">
+          <img src="img/ink.jpg" width="1600" height="1200" loading="lazy" alt="어두운 물속으로 번지는 푸른 잉크의 흐름" />
+        </figure>
+
+        <dl class="metric metric--a">
+          <dt><span class="metric__n" data-count-to="1945">1945</span></dt>
+          <dd>광복과 함께 태어난 해방둥이 제약사</dd>
+        </dl>
+        <dl class="metric metric--b">
+          <dt><span class="metric__n" data-count-to="80">0</span><b>년</b></dt>
+          <dd>멈추지 않은 생명의 흐름</dd>
+        </dl>
+        <dl class="metric metric--c">
+          <dt><span class="metric__n" data-count-to="7194">0</span><b>억</b></dt>
+          <dd>2024 매출 — 헤리티지 위의 성장</dd>
+        </dl>
+        <dl class="metric metric--d">
+          <dt><span class="metric__mono">국내 최초</span></dt>
+          <dd>1959 5% 포도당 수액 국산화</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 03 HERITAGE — 세로 연도 타임라인 + 패럴랙스 -->
+    <section class="heritage" id="heritage" aria-labelledby="heritage-title">
+      <p class="vlabel" aria-hidden="true">HERITAGE — 흐름의 기록</p>
+      <p class="en en--top reveal">Where the flow has reached</p>
+      <h2 class="heritage__title st" id="heritage-title">흐름이 닿은 자리.</h2>
+
+      <ol class="stream">
+        <li class="drop" data-haptic>
+          <span class="drop__year" aria-hidden="true">1945</span>
+          <div class="drop__body">
+            <h3>조선중외제약</h3>
+            <p class="en">Joseon Chungwae Pharmaceutical</p>
+            <p>광복과 함께 태어난 토종 제약사. 생명존중과 개척정신, 그 첫 흐름이 시작됩니다.</p>
+          </div>
+        </li>
+        <li class="drop drop--media" data-haptic>
+          <figure class="drop__media" data-depth="0.1"><img src="img/sea.jpg" width="1600" height="2000" loading="lazy" alt="해질녘 고요하게 일렁이는 깊고 푸른 바다 표면" /></figure>
+          <span class="drop__year" aria-hidden="true">1959</span>
+          <div class="drop__body">
+            <h3>국내 최초 5% 포도당</h3>
+            <p class="en">Korea's first 5% dextrose IV solution</p>
+            <p>수액 국산화 시대를 열다. 환자의 혈관으로 흘러드는 '생명의 물'을, 우리 손으로 처음 만들었습니다.</p>
+          </div>
+        </li>
+        <li class="drop" data-haptic>
+          <span class="drop__year" aria-hidden="true">1969</span>
+          <div class="drop__body">
+            <h3>인공신장투석액 인페리놀</h3>
+            <p class="en">Inferinol — renal dialysis solution</p>
+            <p>남들이 외면한, 그러나 환자에게 꼭 필요한 약. 흐름은 더 깊은 곳으로 닿습니다.</p>
+          </div>
+        </li>
+        <li class="drop drop--media" data-haptic>
+          <figure class="drop__media" data-depth="0.14"><img src="img/deep.jpg" width="1600" height="2000" loading="lazy" alt="빛줄기가 내리는 심해를 탐험하는 다이버" /></figure>
+          <span class="drop__year" aria-hidden="true">Today</span>
+          <div class="drop__body">
+            <h3>혁신신약, 그리고 글로벌</h3>
+            <p class="en">Innovative drugs, going global</p>
+            <p>헴리브라·리바로로 글로벌을 겨냥하고, AI 플랫폼 JWave로 다음 흐름을 준비합니다.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 04 R&D — JWave, 연구 이미지 + 데이터 파티클 -->
+    <section class="rnd" id="rnd" aria-labelledby="rnd-title">
+      <canvas class="rnd__field" id="field" aria-hidden="true"></canvas>
+      <figure class="rnd__media" data-depth="0.16">
+        <img src="img/lab.jpg" width="1600" height="1200" loading="lazy" alt="현미경을 들여다보며 연구하는 JW 연구원" />
+      </figure>
+      <div class="rnd__copy">
+        <p class="vlabel vlabel--light" aria-hidden="true">JWAVE — AI DRUG DISCOVERY</p>
+        <p class="en en--top reveal">From the flow of water to the flow of data</p>
+        <h2 class="rnd__title st" id="rnd-title">물의 흐름이,<br /><em>데이터</em>의 흐름으로.</h2>
+        <p class="rnd__lede reveal">80년의 직관이 데이터가 되어, 다음 생명을 찾습니다. 빅데이터 약물탐색 시스템 주얼리(JWERLY)와 클로버(CLOVER)를 통합한 AI 신약개발 플랫폼 <em>JWave</em>가 통풍·항암·탈모 영역의 흐름을 엽니다.</p>
+        <ul class="tags" aria-label="R&D 영역">
+          <li class="reveal">JWave Platform</li>
+          <li class="reveal">통풍 · 항암 · 탈모</li>
+          <li class="reveal">Global R&amp;D Network</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 05 PRODUCTS — 겹치는 어긋난 블록 -->
+    <section class="products" id="products" aria-labelledby="products-title">
+      <p class="vlabel" aria-hidden="true">PRODUCTS — 흐름이 닿는 곳</p>
+      <p class="en en--top reveal">Three streams that reach life</p>
+      <h2 class="products__title st" id="products-title">생명에 닿는,<br /><em>세 갈래</em>의 흐름.</h2>
+
+      <div class="flowset">
+        <article class="flow" data-haptic>
+          <figure class="flow__media" data-depth="0.1"><img src="img/bubbles.jpg" width="1600" height="1200" loading="lazy" alt="푸른 물속에 맺힌 무수한 방울의 추상 이미지" /></figure>
+          <div class="flow__txt">
+            <span class="flow__no">01</span>
+            <h3>위너프</h3>
+            <p class="flow__tag">3-Chamber Nutrition · 종합영양수액</p>
+            <p class="flow__desc">흐름이 몸을 채우다. 한 방울의 수액에서 시작된 헤리티지가 가장 정교한 종합영양수액으로.</p>
+          </div>
+        </article>
+        <article class="flow flow--alt" data-haptic>
+          <figure class="flow__media" data-depth="0.13"><img src="img/research.jpg" width="1600" height="1200" loading="lazy" alt="실험실에서 협업하며 연구하는 두 연구원" /></figure>
+          <div class="flow__txt">
+            <span class="flow__no">02</span>
+            <h3>리바로</h3>
+            <p class="flow__tag">Dyslipidemia · 이상지질혈증 치료제</p>
+            <p class="flow__desc">매일을 지키다. 혈관 속 흐름을 맑게, 수많은 일상이 멈추지 않도록.</p>
+          </div>
+        </article>
+        <article class="flow" data-haptic>
+          <figure class="flow__media" data-depth="0.16"><img src="img/ink.jpg" width="1600" height="1200" loading="lazy" alt="어두운 물속으로 번지는 푸른 잉크" /></figure>
+          <div class="flow__txt">
+            <span class="flow__no">03</span>
+            <h3>헴리브라</h3>
+            <p class="flow__tag">Hemophilia A · A형 혈우병 혁신신약</p>
+            <p class="flow__desc">멈춘 피를 다시 흐르게. 끊겼던 흐름을 잇는, 우리의 혁신신약.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 06 SUSTAINABILITY — 철학 -->
+    <section class="sustain" id="sustain" aria-labelledby="sustain-title">
+      <figure class="sustain__media" data-depth="0.2" aria-hidden="true" style="background-image:url('img/sea.jpg')"></figure>
+      <p class="vlabel vlabel--light" aria-hidden="true">SUSTAINABILITY — 생명존중</p>
+      <p class="en en--top reveal">As long as life flows, so do we</p>
+      <h2 class="sustain__quote st" id="sustain-title">생명이 흐르는 한,<br />우리의 <em>흐름</em>도<br />멈추지 않습니다.</h2>
+      <p class="sustain__sign reveal">생명존중 · 개척정신 — Since 1945</p>
+    </section>
+  </main>
+
+  <footer class="foot" id="foot">
+    <div class="foot__cta">
+      <p class="foot__kicker reveal">Keeping Life in Flow</p>
+      <a class="foot__make" href="#top" data-link data-haptic>다음 흐름에<br />함께.</a>
+    </div>
+    <div class="foot__row">
+      <span class="foot__brand">JW중외제약</span>
+      <nav class="foot__links" aria-label="푸터 메뉴">
+        <a href="#heritage" data-link>Heritage</a>
+        <a href="#rnd" data-link>R&amp;D</a>
+        <a href="#products" data-link>Products</a>
+        <a href="#sustain" data-link>Sustainability</a>
+      </nav>
+      <p class="foot__copy">Redesign concept by 허강범 · 브랜드 자산 © JW중외제약 · 이미지 Unsplash</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MARUNI — Minimal in form, deep in soul</title>
+  <meta name="description" content="1928년 히로시마에서 시작된 마루니. 장인의 기술을 산업으로 옮겨 적는 'industrialised craft'. 후카사와 나오토와 재스퍼 모리슨이 빚어낸 시대를 초월한 목가구." />
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Sans+KR:wght@400;500&family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip" href="#manifesto">본문으로 건너뛰기</a>
+
+  <!-- 헤더 -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#top" data-link>maruni</a>
+      <nav class="nav__menu" aria-label="주요 메뉴">
+        <a href="#collection" data-link>Collection</a>
+        <a href="#craft" data-link>Craft</a>
+        <a href="#designers" data-link>Designers</a>
+      </nav>
+      <p class="nav__est">Est. 1928 — Hiroshima</p>
+    </div>
+  </header>
+
+  <span id="top"></span>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <figure class="hero__media">
+      <img id="heroImg" src="img/don-kaveen-NFbwes_e-jI-unsplash.jpg" alt="정원이 보이는 통창 앞, 마루니의 우드 다이닝 테이블과 의자가 놓인 따뜻한 공간" width="2908" height="3878" fetchpriority="high" />
+    </figure>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Maruni Wood Industry — Hiroshima, Japan</p>
+      <h1 class="hero__title">
+        <span class="line"><span>Minimal in form,</span></span>
+        <span class="line"><span><em>deep</em> in soul.</span></span>
+      </h1>
+      <p class="hero__intro">한 세기 가까이, 우리는 세계에서 가장 사랑받는 목재를 시대를 초월한 가구로 빚어 왔습니다.</p>
+    </div>
+
+    <a class="hero__scroll" href="#manifesto" data-link aria-label="아래로 스크롤">
+      <span>Scroll</span><i aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <main>
+    <!-- ===================== MANIFESTO ===================== -->
+    <section class="manifesto" id="manifesto">
+      <p class="eyebrow reveal"><span class="eyebrow__no">—</span> Philosophy</p>
+      <h2 class="statement">
+        <span class="reveal-line">장인의 기술을,</span>
+        <span class="reveal-line"><em>산업의 언어로</em> 옮겨 적다.</span>
+      </h2>
+      <div class="manifesto__cols">
+        <p class="reveal">1928년 창업 이래, 마루니는 손끝의 기술을 산업적 생산에 적용하는 길을 개척해 왔습니다. 우리는 이를 <em>‘industrialised craft’</em>—산업화된 장인정신이라 부릅니다.</p>
+        <p class="reveal">최첨단 가공과 숙련된 손의 마감이 한 점에서 만날 때, 비로소 오래 곁에 둘 수 있는 가구가 태어납니다. 품질과 내구성, 그리고 시간이 지날수록 깊어지는 아름다움.</p>
+      </div>
+    </section>
+
+    <!-- ===================== COLLECTION ===================== -->
+    <section class="collection" id="collection">
+      <header class="sec-head">
+        <p class="eyebrow reveal"><span class="eyebrow__no">01</span> The Collection</p>
+        <h2 class="sec-title st-target">Maruni Collection</h2>
+        <p class="sec-desc reveal">한 점 한 점이 디자이너의 손에서 시작되어, 백 년의 목공이 완성합니다.</p>
+      </header>
+
+      <article class="piece" data-side="left">
+        <figure class="piece__media reveal-img">
+          <img src="img/katja-rooke-77JACslA8G0-unsplash 2.jpg" alt="우드 커피테이블과 함께 놓인 올리브 톤의 2인용 소파" width="1012" height="759" loading="lazy" />
+        </figure>
+        <div class="piece__info">
+          <span class="piece__no">01</span>
+          <h3 class="piece__name">Roundish</h3>
+          <p class="piece__type">Two-seater Sofa</p>
+          <p class="piece__desc">부드러운 곡선이 공간을 감싸 안습니다. 오래 앉을수록 몸에 스며드는, 단정한 편안함.</p>
+          <p class="piece__by">Design — Naoto Fukasawa</p>
+        </div>
+      </article>
+
+      <article class="piece" data-side="right">
+        <figure class="piece__media reveal-img">
+          <img src="img/sandra-rei-O1dDKmhedWc-unsplash 3.jpg" alt="우드 슬랫 벽 앞, 원목 다리의 단정한 체어" width="683" height="1024" loading="lazy" />
+        </figure>
+        <div class="piece__info">
+          <span class="piece__no">02</span>
+          <h3 class="piece__name">Lightwood</h3>
+          <p class="piece__type">Chair</p>
+          <p class="piece__desc">가벼움과 견고함의 균형. 손에 드는 순간, 설계의 정직함이 전해집니다.</p>
+          <p class="piece__by">Design — Jasper Morrison</p>
+        </div>
+      </article>
+
+      <article class="piece" data-side="left">
+        <figure class="piece__media reveal-img">
+          <img src="img/kam-idris-_HqHX3LBN18-unsplash 3.jpg" alt="원목 바닥 위, 깊은 머스터드 컬러의 넓은 암체어" width="850" height="744" loading="lazy" />
+        </figure>
+        <div class="piece__info">
+          <span class="piece__no">03</span>
+          <h3 class="piece__name">Hiroshima</h3>
+          <p class="piece__type">Lounge Armchair</p>
+          <p class="piece__desc">열 개의 부품을 5축 CNC로 깎아내고, 다시 사람의 손으로 조립하고 마감합니다. 손바닥에 닿는 팔걸이의 곡면이 그 증거입니다.</p>
+          <p class="piece__by">Design — Naoto Fukasawa</p>
+        </div>
+      </article>
+
+      <article class="piece" data-side="right">
+        <figure class="piece__media reveal-img">
+          <img src="img/kirill-1LYTR3hkc4g-unsplash 2.jpg" alt="밝은 벽 앞, 월넛 콘솔과 함께 놓인 원목 사이드 체어" width="752" height="1024" loading="lazy" />
+        </figure>
+        <div class="piece__info">
+          <span class="piece__no">04</span>
+          <h3 class="piece__name">Hiroshima</h3>
+          <p class="piece__type">Side Chair</p>
+          <p class="piece__desc">군더더기 없는 실루엣. 어느 공간에 두어도 조용히 어울리는, 일상의 도구.</p>
+          <p class="piece__by">Design — Naoto Fukasawa</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== CRAFT ===================== -->
+    <section class="craft" id="craft">
+      <figure class="craft__media reveal-img">
+        <img src="img/jean-baptiste-d-TH_3Igq3Rik-unsplash 2.jpg" alt="자와 연필로 원목을 직접 재고 표시하는 장인의 손" width="1024" height="683" loading="lazy" />
+      </figure>
+      <div class="craft__body">
+        <p class="eyebrow reveal"><span class="eyebrow__no">02</span> Industrialised Craft</p>
+        <h2 class="craft__title st-target">기계의 정밀함과<br /><em>손의 온기</em> 사이.</h2>
+        <p class="reveal">우리는 신뢰할 수 있는 공급처에서만 목재를 조달합니다. 첨단 가공이 만든 한 치의 오차 없는 정밀함 위에, 숙련된 장인의 손이 마지막 온기를 더합니다.</p>
+        <dl class="craft__facts">
+          <div class="reveal"><dt>창업</dt><dd>1928</dd></div>
+          <div class="reveal"><dt>Hiroshima 암체어 부품 수</dt><dd>10</dd></div>
+          <div class="reveal"><dt>가공</dt><dd>5-axis CNC + Hand</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================== DESIGNERS ===================== -->
+    <section class="designers" id="designers">
+      <header class="sec-head sec-head--wide">
+        <p class="eyebrow reveal"><span class="eyebrow__no">03</span> Designers</p>
+        <h2 class="sec-title st-target">평범함 속의, <em>비범함</em>.</h2>
+      </header>
+      <div class="designers__grid">
+        <figure class="designers__portrait reveal-img">
+          <img src="img/Jasper_Morrison_1400px 2.jpg" alt="안경을 쓰고 회색 재킷을 입은 디자이너 재스퍼 모리슨의 옆모습 초상" width="1400" height="1839" loading="lazy" />
+          <figcaption>Jasper Morrison</figcaption>
+        </figure>
+        <div class="designers__text">
+          <p class="reveal">2008년, 마루니는 후카사와 나오토를 아트 디렉터로 맞아 <em>Maruni Collection</em>을 시작했습니다. 그는 “행동에 녹아드는 디자인(design dissolving in behaviour)”을 이야기합니다.</p>
+          <p class="reveal">2011년 합류한 재스퍼 모리슨과 함께, 두 사람은 ‘Super Normal’—과시하지 않는 일상의 도구가 지닌 비범한 아름다움을 추구합니다. 국제적 무대에서, 백 년의 장인정신으로.</p>
+          <blockquote class="designers__quote reveal">“Minimal in form, deep in soul.”</blockquote>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== 라이트박스 (GSAP Flip 공유요소 전환) ===================== -->
+  <div class="lb" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="가구 이미지 확대 보기">
+    <button class="lb__close" id="lbClose" type="button" aria-label="닫기">Close</button>
+    <div class="lb__stage" id="lbStage"></div>
+    <p class="lb__cap" id="lbCap" aria-live="polite"></p>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot" id="footer">
+    <div class="foot__top">
+      <div class="foot__cta">
+        <h2 class="foot__make st-target">Where craftsmanship<br />meets <em>modern design</em>.</h2>
+        <form class="foot__news" onsubmit="return false" aria-label="뉴스레터 구독">
+          <label for="email" class="visually">이메일 주소</label>
+          <input id="email" type="email" placeholder="이메일로 새 컬렉션 소식 받기" autocomplete="email" />
+          <button type="submit" aria-label="구독">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="foot__row">
+      <a class="foot__brand" href="#top" data-link>maruni</a>
+      <div class="foot__addr">
+        <p><span>Tokyo</span> 3-6-13 Higashinihonbashi, Chuo-ku, Tokyo 103-0004</p>
+        <p><span>Factory</span> Hiroshima, Japan · TEL +81 (0)3-3677-4131</p>
+      </div>
+      <nav class="foot__sns" aria-label="소셜 미디어">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="#">YouTube</a>
+      </nav>
+    </div>
+    <p class="foot__copy">© 2011– MARUNI WOOD INDUSTRY INC. Redesign concept by 허강범.</p>
+  </footer>
+</body>
+</html>

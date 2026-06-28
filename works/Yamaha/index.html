@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YAMAHA — Make Waves</title>
+  <meta name="description" content="야마하는 소리와 음악의 힘을 믿습니다. 한 세기를 이어온 장인정신이 빚어내는 울림 — Make Waves." />
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="script.js"></script>
+</head>
+
+<body>
+  <a class="skip" href="#resonance">본문으로 건너뛰기</a>
+
+  <!-- 떠다니는 금속 사운드 링 (3D MatCap) — 페이지 전체의 스파인 -->
+  <canvas id="ring" aria-hidden="true"></canvas>
+
+  <!-- 우측 주파수 눈금 = 내비 + 진행 -->
+  <aside class="ruler" aria-label="섹션 탐색">
+    <span class="ruler__line"><i id="rulerFill"></i></span>
+    <ul class="ruler__list">
+      <li><a href="#resonance" data-link data-i="01"><span>Resonance</span></a></li>
+      <li><a href="#instruments" data-link data-i="02"><span>Instruments</span></a></li>
+      <li><a href="#voices" data-link data-i="03"><span>Voices</span></a></li>
+      <li><a href="#legacy" data-link data-i="04"><span>Legacy</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- 상단 미니 브랜드 -->
+  <header class="top">
+    <a class="top__brand" href="#top" data-link>YAMAHA</a>
+    <p class="top__tag">Sound &amp; Music · since <span>1887</span></p>
+  </header>
+
+  <span id="top"></span>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <p class="hero__eyebrow">Belief in the power of sound</p>
+    <h1 class="hero__title" aria-label="Make Waves">
+      <span class="ln"><span>Make</span></span>
+      <span class="ln ln--indent"><span>Waves</span></span>
+    </h1>
+    <p class="hero__note">
+      한 세기를 넘어, 야마하는 소리와 음악으로 세상에 파동을 일으킵니다.<br />
+      장인의 손끝에서 시작된 울림이 사람과 사람을 잇습니다.
+    </p>
+    <div class="hero__meta">
+      <span>스크롤하여 울림을 따라가세요</span>
+      <i class="hero__bar" aria-hidden="true"></i>
+    </div>
+  </section>
+
+  <main>
+    <!-- ===================== RESONANCE / About ===================== -->
+    <section class="reson section" id="resonance">
+      <p class="mark"><i>01</i> Resonance</p>
+      <div class="reson__grid">
+        <div class="reson__text">
+          <h2 class="big">비움이 만드는<br /><em>울림</em>.</h2>
+          <p class="lead">우리는 악기, 음향 기기, 산업 기계·부품을 아우르는 세 영역에서 끊임없이 진화합니다. 모든 사업의 중심에는 언제나 소리와 음악이 있습니다.</p>
+          <p>가장 깊은 소리는 가장 고요한 여백에서 태어납니다. 한 세기가 넘는 장인의 감각과 혁신적인 기술을 결합해, 오직 야마하만이 전할 수 있는 마음을 울리는 경험을 추구합니다.</p>
+        </div>
+        <figure class="plate plate--tall">
+          <img src="img/visual_bg_02.jpg" alt="빛과 그림자로 잡아낸 피아노 건반의 흑백 클로즈업" width="2731" height="4096" loading="lazy" />
+          <figcaption>Grand piano, in silence.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== INSTRUMENTS / Products ===================== -->
+    <section class="inst section" id="instruments">
+      <p class="mark"><i>02</i> Instruments</p>
+
+      <article class="inst__item" data-side="left">
+        <figure class="plate">
+          <img src="img/1751973329.png" alt="검은 광택의 야마하 그랜드 피아노" width="850" height="957" loading="lazy" />
+        </figure>
+        <div class="inst__caption">
+          <span class="inst__no">01 / Keys</span>
+          <h3 class="mid">Piano</h3>
+          <p>한 세기 넘게 이어온 전통과 현대의 혁신이 만나, 탁월한 음색과 압도적인 아름다움을 빚어냅니다.</p>
+        </div>
+      </article>
+
+      <article class="inst__item" data-side="right">
+        <figure class="plate">
+          <img src="img/providence-doucet-wPaBwop_rSo-unsplash.jpg" alt="현악기의 f홀과 브릿지, 현이 클로즈업된 모습" width="4096" height="2723" loading="lazy" />
+        </figure>
+        <div class="inst__caption">
+          <span class="inst__no">02 / Strings</span>
+          <h3 class="mid">String<br />Instrument</h3>
+          <p>나무의 결을 깎아내는 손끝의 감각에서 시작됩니다. 깊은 울림과 섬세한 표현력을 위해 한 대 한 대 정성을 더합니다.</p>
+        </div>
+      </article>
+
+      <article class="inst__item" data-side="left">
+        <figure class="plate">
+          <img src="img/sergei-sushchik-Dyo5xZX687M-unsplash.png%20g%204.png" alt="우드 톤의 야마하 어쿠스틱 기타 정면" width="1828" height="4561" loading="lazy" />
+        </figure>
+        <div class="inst__caption">
+          <span class="inst__no">03 / Acoustic</span>
+          <h3 class="mid">Guitar</h3>
+          <p>풍부한 공명과 손에 감기는 균형. 무대 위에서도, 일상의 거실에서도 변치 않는 명료한 톤으로 노래합니다.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== VOICES / 사회적 증거 ===================== -->
+    <section class="voices section" id="voices">
+      <p class="mark"><i>03</i> Voices</p>
+      <h2 class="big voices__head">세계가 신뢰하는<br />하나의 <em>소리</em>.</h2>
+
+      <div class="figures">
+        <div class="figure">
+          <strong class="count" data-count-to="1887" data-suffix="">1887</strong>
+          <span>설립 이후 이어온 장인정신</span>
+        </div>
+        <div class="figure">
+          <strong class="count" data-count-to="80" data-suffix="+">80</strong>
+          <span>제품을 전하는 국가</span>
+        </div>
+        <div class="figure">
+          <strong class="count" data-count-to="138" data-suffix="">138</strong>
+          <span>해를 함께한 무대와 음악가</span>
+        </div>
+      </div>
+
+      <ul class="quotes">
+        <li class="quote">
+          <blockquote>“손끝이 닿는 순간, 악기가 먼저 내 호흡을 알아챘다. 야마하는 도구가 아니라 동료다.”</blockquote>
+          <cite>— 피아니스트, 콘서트홀 레지던시</cite>
+        </li>
+        <li class="quote">
+          <blockquote>“무대 어디에서도 흔들리지 않는 명료함. 그 신뢰가 연주의 자유를 만든다.”</blockquote>
+          <cite>— 클래식 기타리스트</cite>
+        </li>
+        <li class="quote">
+          <blockquote>“수십 년을 함께했지만, 매번 새로운 울림을 발견한다.”</blockquote>
+          <cite>— 오케스트라 현악 수석</cite>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== LEGACY / Philosophy ===================== -->
+    <section class="legacy section" id="legacy">
+      <p class="mark"><i>04</i> Legacy</p>
+      <div class="legacy__inner">
+        <h2 class="huge">Well-being of<br />people around<br />the <em>world</em>.</h2>
+        <div class="legacy__cols">
+          <div>
+            <h3 class="card-h">Purpose</h3>
+            <p>소리와 음악에 대한 전문성과 열정으로 기쁨과 문화적 영감을 함께 만들어, 전 세계 사람들의 웰빙을 높입니다.</p>
+          </div>
+          <div>
+            <h3 class="card-h">Philosophy</h3>
+            <p>고객의 기대를 뛰어넘는 품질과 서비스를 전하며, 본질을 존중하는 혁신으로 새로운 가치를 창조합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot" id="footer">
+    <p class="foot__make">Make Waves.</p>
+    <div class="foot__row">
+      <a class="foot__brand" href="#top" data-link>YAMAHA</a>
+      <address class="foot__addr">
+        10-1, Nakazawa-cho, Chuo-ku,<br />
+        Hamamatsu-shi, Shizuoka, Japan
+      </address>
+      <nav class="foot__sns" aria-label="소셜 미디어">
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+        <a href="#">Facebook</a>
+      </nav>
+    </div>
+    <p class="foot__copy">© Yamaha Corporation. Redesign concept by 허강범.</p>
+  </footer>
+</body>
+</html>
