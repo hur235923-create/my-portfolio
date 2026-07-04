@@ -89,6 +89,18 @@ html.js .cs-reveal{will-change:opacity,transform;}
 .cs-goals .cs-card{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:start;}
 .cs-goals .cs-gno{color:var(--cyan);}
 
+/* 06 · UX Strategy */
+.cs-flow{list-style:none;display:flex;flex-wrap:wrap;gap:.7rem;margin:1.8rem 0 2.2rem;counter-reset:f;}
+.cs-flow li{position:relative;flex:1 1 8rem;text-align:center;padding:1rem .6rem;border-radius:.7rem;
+  background:linear-gradient(180deg,rgba(0,64,127,.35),rgba(7,34,58,.5));border:1px solid var(--glass-line);
+  font-weight:600;font-size:.95rem;}
+.cs-flow li span{display:block;font:400 .72rem/1 var(--mono);color:var(--cyan);margin-top:.4rem;}
+.cs-flow li:not(:last-child)::after{content:"↓";position:absolute;right:-.6rem;top:50%;transform:translateY(-50%);
+  color:var(--cyan);font-size:.9rem;}
+.cs-strat{list-style:none;display:grid;gap:.8rem;}
+.cs-strat li{padding:1rem 1.2rem;border:1px solid var(--line-d);border-radius:.7rem;background:rgba(7,34,58,.3);}
+.cs-strat b{color:var(--cyan);}
+
 @media (max-width:960px){:root{--maxw:100%;}}
 @media (max-width:760px){
   .cs-hud__title{display:none;}
@@ -96,6 +108,7 @@ html.js .cs-reveal{will-change:opacity,transform;}
   .cs-grid3{grid-template-columns:1fr;}
   .cs-audit div{grid-template-columns:1fr;gap:.35rem;}
   .cs-goals{grid-template-columns:1fr;}
+  .cs-flow li:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-.65rem;transform:translateX(-50%);}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
