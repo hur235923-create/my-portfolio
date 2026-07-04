@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JW중외제약 리디자인 — UX 케이스 스터디 · 허강범</title>
+  <meta name="description" content="1945년 한 방울의 수액에서 시작된 흐름. JW중외제약 리디자인의 UX 사고 과정을 12단계로 기록한 케이스 스터디." />
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="casestudy.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="casestudy.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#cs-main">본문으로 건너뛰기</a>
+
+  <!-- 상단 고정 HUD -->
+  <header class="cs-hud" aria-label="케이스 스터디 탐색">
+    <a class="cs-hud__back" href="../../index.html">← 포트폴리오</a>
+    <div class="cs-hud__center">
+      <span class="cs-hud__title">JW중외제약 · UX CASE STUDY</span>
+      <span class="cs-hud__counter" id="csCounter" aria-live="polite">01 / 12</span>
+    </div>
+    <a class="cs-hud__live" href="index.html">라이브 보기 <span aria-hidden="true">↗</span></a>
+    <span class="cs-hud__gauge" aria-hidden="true"><span class="cs-hud__gauge-fill" id="csGauge"></span></span>
+  </header>
+
+  <main id="cs-main">
+    <!-- 섹션 01~12는 이후 태스크에서 채운다. 지금은 자리표시 골격만. -->
+    <section class="cs-sec" id="sec-01" aria-labelledby="t01" data-idx="1"><h2 id="t01">01 · Project Intro</h2></section>
+    <section class="cs-sec" id="sec-02" aria-labelledby="t02" data-idx="2"><h2 id="t02">02 · Service Understanding</h2></section>
+    <section class="cs-sec" id="sec-03" aria-labelledby="t03" data-idx="3"><h2 id="t03">03 · UX Audit</h2></section>
+    <section class="cs-sec" id="sec-04" aria-labelledby="t04" data-idx="4"><h2 id="t04">04 · Problem Statement</h2></section>
+    <section class="cs-sec" id="sec-05" aria-labelledby="t05" data-idx="5"><h2 id="t05">05 · Design Goal</h2></section>
+    <section class="cs-sec" id="sec-06" aria-labelledby="t06" data-idx="6"><h2 id="t06">06 · UX Strategy</h2></section>
+    <section class="cs-sec" id="sec-07" aria-labelledby="t07" data-idx="7"><h2 id="t07">07 · UI Design</h2></section>
+    <section class="cs-sec" id="sec-08" aria-labelledby="t08" data-idx="8"><h2 id="t08">08 · Design System</h2></section>
+    <section class="cs-sec" id="sec-09" aria-labelledby="t09" data-idx="9"><h2 id="t09">09 · Final Design</h2></section>
+    <section class="cs-sec" id="sec-10" aria-labelledby="t10" data-idx="10"><h2 id="t10">10 · Before / After</h2></section>
+    <section class="cs-sec" id="sec-11" aria-labelledby="t11" data-idx="11"><h2 id="t11">11 · Expected Outcome</h2></section>
+    <section class="cs-sec" id="sec-12" aria-labelledby="t12" data-idx="12"><h2 id="t12">12 · Project Reflection</h2></section>
+  </main>
+</body>
+</html>
