@@ -401,3 +401,44 @@ em { font-style: italic; color: var(--accent); }
   .card { flex: none; grid-template-columns: 1fr; }
   * { scroll-behavior: auto !important; }
 }
+
+/* ============================================================
+   개선(리디자인) — HP1~HP4
+   ============================================================ */
+
+/* HP4 — 데스크톱 nav 현재 섹션 활성 표시 */
+.nav__menu a[aria-current="location"] { color: var(--paper); }
+.nav__menu a[aria-current="location"]::after { transform: scaleX(1); transform-origin: left; }
+
+/* HP2 — READ MORE 죽은 링크 처리(무력화 시각 힌트) */
+.link-more[aria-disabled="true"] { cursor: default; }
+
+/* HP1 — 햄버거 (모바일 전용) */
+.nav__burger { display: none; width: 42px; height: 42px; margin-left: 0.6rem; background: none; border: 0; padding: 0; position: relative; color: var(--paper); cursor: pointer; }
+.nav__burger span { position: absolute; left: 10px; right: 10px; height: 1.5px; background: currentColor; transition: transform 0.3s var(--ease); }
+.nav__burger span:nth-child(1) { top: 16px; }
+.nav__burger span:nth-child(2) { bottom: 16px; }
+.nav__burger.is-open span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { bottom: 20px; transform: rotate(-45deg); }
+
+/* HP1 — 모바일 드로어(dark luxury) */
+.mnav { position: fixed; inset: 0; z-index: 500; visibility: hidden; }
+.mnav.is-open { visibility: visible; }
+.mnav__panel { position: absolute; inset: 0; background: linear-gradient(180deg, var(--ink), var(--graphite)); padding: clamp(4.5rem, 15vh, 6.5rem) var(--pad) 2.5rem; display: flex; flex-direction: column; opacity: 0; transform: translateY(-6%); transition: opacity 0.4s var(--ease), transform 0.45s var(--ease); }
+.mnav.is-open .mnav__panel { opacity: 1; transform: none; }
+.mnav__close { align-self: flex-end; background: none; border: 0; color: var(--accent); font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; padding: 0.6rem 0.2rem; }
+.mnav__list { display: flex; flex-direction: column; margin-top: clamp(1.5rem, 5vh, 3rem); }
+.mnav__list a { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.2rem 0; border-top: 1px solid var(--line-soft); }
+.mnav__list a:last-child { border-bottom: 1px solid var(--line-soft); }
+.mnav__list b { font-family: var(--serif); font-weight: 500; font-size: clamp(1.8rem, 8vw, 2.4rem); letter-spacing: -0.01em; }
+.mnav__list span { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+
+@media (max-width: 720px) {
+  .nav__burger { display: block; }
+  .nav__since { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnav__panel { transition: none; }
+  .nav__burger span { transition: none; }
+}

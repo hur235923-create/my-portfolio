@@ -45,7 +45,26 @@
   <header class="top">
     <a class="top__brand" href="#top" data-link>YAMAHA</a>
     <p class="top__tag">Sound &amp; Music · since <span>1887</span></p>
+    <button class="top__burger" id="ymBurger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="ymNav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
   </header>
+
+  <!-- YP2: 모바일 진행 게이지 (ruler 대체) -->
+  <span class="mprog" aria-hidden="true"><i id="ymMprog"></i></span>
+
+  <!-- YP1: 모바일 내비게이션 드로어 -->
+  <div class="mnav" id="ymNav" aria-hidden="true">
+    <div class="mnav__panel" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+      <button class="mnav__close" id="ymNavClose" type="button" aria-label="메뉴 닫기">닫기 ×</button>
+      <nav class="mnav__list" aria-label="주요 메뉴">
+        <a href="#resonance" data-mclose><b>Resonance</b><span>비움이 만드는 울림</span></a>
+        <a href="#instruments" data-mclose><b>Instruments</b><span>악기</span></a>
+        <a href="#voices" data-mclose><b>Voices</b><span>세계가 신뢰하는 소리</span></a>
+        <a href="#legacy" data-mclose><b>Legacy</b><span>존재 이유</span></a>
+      </nav>
+    </div>
+  </div>
 
   <span id="top"></span>
 
@@ -186,9 +205,9 @@
         Hamamatsu-shi, Shizuoka, Japan
       </address>
       <nav class="foot__sns" aria-label="소셜 미디어">
-        <a href="#">Instagram</a>
-        <a href="#">YouTube</a>
-        <a href="#">Facebook</a>
+        <a href="#" aria-disabled="true">Instagram</a>
+        <a href="#" aria-disabled="true">YouTube</a>
+        <a href="#" aria-disabled="true">Facebook</a>
       </nav>
     </div>
     <p class="foot__copy">© Yamaha Corporation. Redesign concept by 허강범.</p>

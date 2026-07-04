@@ -11,6 +11,7 @@ const jw_canVibrate = "vibrate" in navigator && window.matchMedia("(hover: none)
 
 const jw_nav = document.getElementById("nav");
 const jw_riverFill = document.getElementById("riverFill");
+const jw_mprogFill = document.getElementById("mprogFill");
 
 /* ---------- Lenis ---------- */
 const jw_lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
@@ -24,6 +25,7 @@ jw_lenis.on("scroll", ({ scroll }) => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const p = max > 0 ? Math.min(1, scroll / max) : 0;
   if (jw_riverFill) jw_riverFill.style.transform = "scaleY(" + p + ")";
+  if (jw_mprogFill) jw_mprogFill.style.transform = "scaleX(" + p + ")"; /* P2: 모바일 게이지 */
 });
 
 /* ---------- 햅틱 ---------- */
@@ -197,3 +199,110 @@ window.addEventListener("resize", () => {
     ScrollTrigger.refresh();
   }, 250);
 });
+
+/* ============================================================
+   개선(리디자인) — P1~P6 동작
+   ============================================================ */
+
+/* ---------- P1: 모바일 드로어 (포커스 트랩·ESC·스크롤 락) ---------- */
+(function jw_drawer() {
+  const burger = document.getElementById("navBurger");
+  const drawer = document.getElementById("mobileNav");
+  if (!burger || !drawer) return;
+  const closeBtn = document.getElementById("mnavClose");
+  let lastFocus = null;
+
+  const focusables = () =>
+    Array.from(drawer.querySelectorAll('a[href], button')).filter((el) => el.offsetParent !== null);
+
+  function open() {
+    lastFocus = document.activeElement;
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    burger.classList.add("is-open");
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", "메뉴 닫기");
+    jw_lenis.stop();
+    document.documentElement.style.overflow = "hidden";
+    const f = focusables();
+    if (f.length) f[0].focus();
+  }
+  function close() {
+    if (!drawer.classList.contains("is-open")) return;
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    burger.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "메뉴 열기");
+    jw_lenis.start();
+    document.documentElement.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  burger.addEventListener("click", () => {
+    drawer.classList.contains("is-open") ? close() : open();
+  });
+  if (closeBtn) closeBtn.addEventListener("click", close);
+
+  document.addEventListener("keydown", (e) => {
+    if (!drawer.classList.contains("is-open")) return;
+    if (e.key === "Escape") { close(); return; }
+    if (e.key === "Tab") {
+      const f = focusables();
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* 드로어 링크 → 닫고 부드럽게 이동(중복 스크롤 방지 위해 전용 처리) */
+  drawer.querySelectorAll("[data-mclose]").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      close();
+      if (id && id.startsWith("#")) {
+        e.preventDefault();
+        const target = id === "#top" ? 0 : document.querySelector(id);
+        if (target !== null) jw_lenis.scrollTo(target, { offset: -50, duration: 1.3 });
+      }
+    });
+  });
+})();
+
+/* ---------- P3: 준비 중(aria-disabled) 링크 무력화 ---------- */
+document.querySelectorAll('[aria-disabled="true"]').forEach((el) => {
+  el.addEventListener("click", (e) => e.preventDefault());
+});
+
+/* ---------- P4: 제품 disclosure(아코디언) ---------- */
+document.querySelectorAll(".flow__more").forEach((btn) => {
+  const panel = document.getElementById(btn.getAttribute("aria-controls"));
+  if (!panel) return;
+  btn.addEventListener("click", () => {
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!isOpen));
+    panel.hidden = isOpen;
+    ScrollTrigger.refresh();
+  });
+});
+
+/* ---------- P6-4: 현재 섹션 활성 nav 표시 ---------- */
+(function jw_activeNav() {
+  const map = Array.from(document.querySelectorAll('.nav__menu a[href^="#"]'))
+    .map((a) => ({ a, sec: document.querySelector(a.getAttribute("href")) }))
+    .filter((o) => o.sec);
+  if (!map.length) return;
+  function setActive(link) {
+    map.forEach((o) => {
+      if (o.a === link) o.a.setAttribute("aria-current", "location");
+      else o.a.removeAttribute("aria-current");
+    });
+  }
+  map.forEach((o) => {
+    ScrollTrigger.create({
+      trigger: o.sec, start: "top center", end: "bottom center",
+      onToggle: (self) => { if (self.isActive) setActive(o.a); },
+    });
+  });
+})();

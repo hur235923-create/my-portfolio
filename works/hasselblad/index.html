@@ -40,7 +40,23 @@
       <a href="#discover" data-link>Discover</a>
     </nav>
     <span class="nav__since">EST. 1941</span>
+    <button class="nav__burger" id="hbBurger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="hbNav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
   </header>
+
+  <!-- HP1: 모바일 내비게이션 드로어 -->
+  <div class="mnav" id="hbNav" aria-hidden="true">
+    <div class="mnav__panel" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+      <button class="mnav__close" id="hbNavClose" type="button" aria-label="메뉴 닫기">CLOSE ×</button>
+      <nav class="mnav__list" aria-label="주요 메뉴">
+        <a href="#about" data-mclose><b>About</b><span>하셀블라드의 역사</span></a>
+        <a href="#products" data-mclose><b>Products</b><span>X · V · H 시스템</span></a>
+        <a href="#inspiration" data-mclose><b>Inspiration</b><span>빛이 머문 이야기</span></a>
+        <a href="#discover" data-mclose><b>Discover</b><span>이미지 갤러리</span></a>
+      </nav>
+    </div>
+  </div>
 
   <main id="top">
 

@@ -44,7 +44,26 @@
       <a href="#sustain" data-link>Sustainability</a>
     </nav>
     <span class="nav__since" data-haptic>Est. 1945</span>
+    <button class="nav__burger" id="navBurger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileNav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+    <!-- P2: 모바일 흐름 게이지 — river 대체, 진행값 공유 -->
+    <span class="mprog" aria-hidden="true"><i id="mprogFill"></i></span>
   </header>
+
+  <!-- P1: 모바일 내비게이션 드로어(심해) -->
+  <div class="mnav" id="mobileNav" aria-hidden="true">
+    <div class="mnav__panel" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+      <button class="mnav__close" id="mnavClose" type="button" aria-label="메뉴 닫기">닫기 ×</button>
+      <nav class="mnav__list" aria-label="주요 메뉴">
+        <a class="mnav__link" href="#heritage" data-mclose><b>Heritage</b><span>흐름의 기록</span></a>
+        <a class="mnav__link" href="#rnd" data-mclose><b>R&amp;D</b><span>JWave · AI 신약개발</span></a>
+        <a class="mnav__link" href="#products" data-mclose><b>Products</b><span>세 갈래의 흐름</span></a>
+        <a class="mnav__link" href="#sustain" data-mclose><b>Sustainability</b><span>생명존중</span></a>
+      </nav>
+      <a class="mnav__contact" href="mailto:webmaster@jw-pharma.co.kr" data-mclose>문의하기</a>
+    </div>
+  </div>
 
   <span id="top"></span>
 
@@ -57,7 +76,7 @@
         <div class="hero__layer hero__layer--glow" data-depth="0.4"></div>
       </div>
 
-      <p class="hero__mark" data-depth="0.6">JW중외제약</p>
+      <p class="hero__mark" data-depth="0.6" aria-hidden="true">JW중외제약</p>
 
       <div class="hero__copy">
         <p class="hero__eyebrow">심해의 고요처럼, 보이지 않는 곳에서</p>
@@ -84,15 +103,15 @@
         </figure>
 
         <dl class="metric metric--a">
-          <dt><span class="metric__n" data-count-to="1945">1945</span></dt>
+          <dt aria-label="1945년"><span class="metric__n" data-count-to="1945" aria-hidden="true">1945</span></dt>
           <dd>광복과 함께 태어난 해방둥이 제약사</dd>
         </dl>
         <dl class="metric metric--b">
-          <dt><span class="metric__n" data-count-to="80">0</span><b>년</b></dt>
+          <dt aria-label="80년"><span class="metric__n" data-count-to="80" aria-hidden="true">0</span><b aria-hidden="true">년</b></dt>
           <dd>멈추지 않은 생명의 흐름</dd>
         </dl>
         <dl class="metric metric--c">
-          <dt><span class="metric__n" data-count-to="7194">0</span><b>억</b></dt>
+          <dt aria-label="7194억 원"><span class="metric__n" data-count-to="7194" aria-hidden="true">0</span><b aria-hidden="true">억</b></dt>
           <dd>2024 매출 — 헤리티지 위의 성장</dd>
         </dl>
         <dl class="metric metric--d">
@@ -179,6 +198,14 @@
             <h3>위너프</h3>
             <p class="flow__tag">3-Chamber Nutrition · 종합영양수액</p>
             <p class="flow__desc">흐름이 몸을 채우다. 한 방울의 수액에서 시작된 헤리티지가 가장 정교한 종합영양수액으로.</p>
+            <button class="flow__more" type="button" aria-expanded="false" aria-controls="flow-p1">자세히 보기<span class="flow__more-i" aria-hidden="true"></span></button>
+            <div class="flow__panel" id="flow-p1" hidden>
+              <dl class="flow__facts">
+                <div><dt>성분</dt><dd>아미노산 · 포도당 · 지질(3-Chamber)</dd></div>
+                <div><dt>적응증</dt><dd>경구·경장 영양이 어려운 환자의 정맥영양 공급</dd></div>
+                <div><dt>특징</dt><dd>사용 직전 3챔버를 혼합하는 종합영양수액</dd></div>
+              </dl>
+            </div>
           </div>
         </article>
         <article class="flow flow--alt" data-haptic>
@@ -188,6 +215,14 @@
             <h3>리바로</h3>
             <p class="flow__tag">Dyslipidemia · 이상지질혈증 치료제</p>
             <p class="flow__desc">매일을 지키다. 혈관 속 흐름을 맑게, 수많은 일상이 멈추지 않도록.</p>
+            <button class="flow__more" type="button" aria-expanded="false" aria-controls="flow-p2">자세히 보기<span class="flow__more-i" aria-hidden="true"></span></button>
+            <div class="flow__panel" id="flow-p2" hidden>
+              <dl class="flow__facts">
+                <div><dt>성분</dt><dd>피타바스타틴칼슘</dd></div>
+                <div><dt>적응증</dt><dd>이상지질혈증(고지혈증)</dd></div>
+                <div><dt>특징</dt><dd>HMG-CoA 환원효소 억제제(스타틴) 계열</dd></div>
+              </dl>
+            </div>
           </div>
         </article>
         <article class="flow" data-haptic>
@@ -197,9 +232,20 @@
             <h3>헴리브라</h3>
             <p class="flow__tag">Hemophilia A · A형 혈우병 혁신신약</p>
             <p class="flow__desc">멈춘 피를 다시 흐르게. 끊겼던 흐름을 잇는, 우리의 혁신신약.</p>
+            <button class="flow__more" type="button" aria-expanded="false" aria-controls="flow-p3">자세히 보기<span class="flow__more-i" aria-hidden="true"></span></button>
+            <div class="flow__panel" id="flow-p3" hidden>
+              <dl class="flow__facts">
+                <div><dt>성분</dt><dd>에미시주맙</dd></div>
+                <div><dt>적응증</dt><dd>A형 혈우병 환자의 출혈 예방요법</dd></div>
+                <div><dt>특징</dt><dd>피하주사 방식의 혁신신약</dd></div>
+              </dl>
+            </div>
           </div>
         </article>
       </div>
+
+      <!-- P5: YMYL 신뢰·안전 고지 -->
+      <p class="med-note">본 제품 정보는 일반적 안내이며, 복용·처방 등 의학적 판단은 반드시 의료 전문가와 상담하시기 바랍니다.</p>
     </section>
 
     <!-- 06 SUSTAINABILITY — 철학 -->
@@ -215,16 +261,35 @@
   <footer class="foot" id="foot">
     <div class="foot__cta">
       <p class="foot__kicker reveal">Keeping Life in Flow</p>
-      <a class="foot__make" href="#top" data-link data-haptic>다음 흐름에<br />함께.</a>
+      <p class="foot__make">다음 흐름에<br />함께.</p>
+      <!-- P3: 실제 행동 종착지 — 막다른 루프(#top) 제거 -->
+      <div class="foot__actions">
+        <a class="fbtn fbtn--primary" href="mailto:webmaster@jw-pharma.co.kr" data-haptic>문의하기</a>
+        <a class="fbtn" href="#products" data-link>제품 살펴보기</a>
+        <a class="fbtn fbtn--ghost" href="#" aria-disabled="true">인재영입 · 준비 중</a>
+        <a class="fbtn fbtn--ghost" href="#" aria-disabled="true">투자정보(IR) · 준비 중</a>
+      </div>
     </div>
     <div class="foot__row">
       <span class="foot__brand">JW중외제약</span>
-      <nav class="foot__links" aria-label="푸터 메뉴">
-        <a href="#heritage" data-link>Heritage</a>
-        <a href="#rnd" data-link>R&amp;D</a>
-        <a href="#products" data-link>Products</a>
-        <a href="#sustain" data-link>Sustainability</a>
-      </nav>
+      <div class="foot__nav">
+        <nav class="foot__links" aria-label="섹션 둘러보기">
+          <span class="foot__links-h">둘러보기</span>
+          <a href="#heritage" data-link>Heritage</a>
+          <a href="#rnd" data-link>R&amp;D</a>
+          <a href="#products" data-link>Products</a>
+          <a href="#sustain" data-link>Sustainability</a>
+        </nav>
+        <nav class="foot__links" aria-label="바로가기">
+          <span class="foot__links-h">바로가기</span>
+          <a href="mailto:webmaster@jw-pharma.co.kr">문의</a>
+          <a href="#" aria-disabled="true">채용</a>
+          <a href="#" aria-disabled="true">IR</a>
+        </nav>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <p class="foot__note">본 사이트의 제품 정보는 일반적 안내이며, 의학적 판단은 의료 전문가와 상담하시기 바랍니다.</p>
       <p class="foot__copy">Redesign concept by 허강범 · 브랜드 자산 © JW중외제약 · 이미지 Unsplash</p>
     </div>
   </footer>

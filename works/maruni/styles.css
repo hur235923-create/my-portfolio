@@ -280,3 +280,44 @@ p { text-wrap: pretty; }
   .piece__media img { transition: none; }
   * { scroll-behavior: auto !important; }
 }
+
+/* ============================================================
+   개선(리디자인) — MP1~MP4
+   ============================================================ */
+
+/* MP3 — 데스크톱 nav 현재 섹션 활성 표시 */
+.nav__menu a[aria-current="location"] { color: var(--espresso); }
+.nav__menu a[aria-current="location"]::after { transform: scaleX(1); }
+
+/* MP4 — SNS 죽은 링크 처리 + 뉴스레터 피드백 */
+.foot__sns a[aria-disabled="true"] { cursor: not-allowed; opacity: 0.55; }
+.foot__news-msg { margin-top: 0.9rem; font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.04em; color: var(--walnut); }
+
+/* MP1 — 햄버거 (모바일 전용) */
+.nav__burger { display: none; width: 42px; height: 42px; margin-left: 0.4rem; background: none; border: 0; padding: 0; position: relative; color: var(--espresso); cursor: pointer; }
+.nav__burger span { position: absolute; left: 10px; right: 10px; height: 1.5px; background: currentColor; transition: transform 0.3s var(--ease); }
+.nav__burger span:nth-child(1) { top: 16px; }
+.nav__burger span:nth-child(2) { bottom: 16px; }
+.nav__burger.is-open span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { bottom: 20px; transform: rotate(-45deg); }
+
+/* MP1 — 모바일 드로어(웜 뮤지엄) */
+.mnav { position: fixed; inset: 0; z-index: 350; visibility: hidden; }
+.mnav.is-open { visibility: visible; }
+.mnav__panel { position: absolute; inset: 0; background: var(--ivory); padding: clamp(4.5rem, 15vh, 6.5rem) var(--pad) 2.5rem; display: flex; flex-direction: column; opacity: 0; transform: translateY(-6%); transition: opacity 0.4s var(--ease), transform 0.45s var(--ease); }
+.mnav.is-open .mnav__panel { opacity: 1; transform: none; }
+.mnav__close { align-self: flex-end; background: none; border: 0; color: var(--walnut); font-family: var(--sans); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; padding: 0.6rem 0.2rem; }
+.mnav__list { display: flex; flex-direction: column; margin-top: clamp(1.5rem, 5vh, 3rem); }
+.mnav__list a { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.3rem 0; border-top: 1px solid var(--line); }
+.mnav__list a:last-child { border-bottom: 1px solid var(--line); }
+.mnav__list b { font-family: var(--display); font-weight: 500; font-size: clamp(2rem, 9vw, 2.6rem); letter-spacing: -0.01em; line-height: 1; }
+.mnav__list span { font-family: var(--sans); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone); }
+
+@media (max-width: 920px) {
+  .nav__burger { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnav__panel { transition: none; }
+  .nav__burger span { transition: none; }
+}

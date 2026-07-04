@@ -167,12 +167,132 @@ function mr_initLightbox() {
   };
 
   document.querySelectorAll(".piece__media img").forEach((img) => {
+    /* MP2: 키보드 접근 — 포커스 가능 + 역할/라벨 + Enter/Space */
+    const piece = img.closest(".piece");
+    const nm = piece ? piece.querySelector(".piece__name").textContent.trim() : "가구";
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("role", "button");
+    img.setAttribute("aria-label", nm + " 확대 보기");
     img.addEventListener("click", () => { if (!active) open(img); });
+    img.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (!active) open(img); }
+    });
   });
   lb.addEventListener("click", (e) => { if (e.target !== active) close(); });
-  window.addEventListener("keydown", (e) => { if (e.key === "Escape" && lb.classList.contains("is-open")) close(); });
+  window.addEventListener("keydown", (e) => {
+    if (!lb.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "Tab") { e.preventDefault(); closeBtn.focus(); } /* MP2: 포커스 트랩 */
+  });
 }
 mr_initLightbox();
+
+/* ============================================================
+   개선(리디자인) — MP1 드로어 · MP3 활성 nav · MP4 SNS/뉴스레터
+   ============================================================ */
+
+/* MP1 — 모바일 드로어 */
+(function mr_drawer() {
+  const burger = document.getElementById("mrBurger");
+  const drawer = document.getElementById("mrNav");
+  if (!burger || !drawer) return;
+  const closeBtn = document.getElementById("mrNavClose");
+  let lastFocus = null;
+  const focusables = () =>
+    Array.from(drawer.querySelectorAll("a[href], button")).filter((el) => el.offsetParent !== null);
+
+  function open() {
+    lastFocus = document.activeElement;
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    burger.classList.add("is-open");
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", "메뉴 닫기");
+    mr_lenis.stop();
+    document.documentElement.style.overflow = "hidden";
+    const f = focusables();
+    if (f.length) f[0].focus();
+  }
+  function close() {
+    if (!drawer.classList.contains("is-open")) return;
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    burger.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "메뉴 열기");
+    mr_lenis.start();
+    document.documentElement.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  burger.addEventListener("click", () => (drawer.classList.contains("is-open") ? close() : open()));
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (!drawer.classList.contains("is-open")) return;
+    if (e.key === "Escape") { close(); return; }
+    if (e.key === "Tab") {
+      const f = focusables();
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  drawer.querySelectorAll("[data-mclose]").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      close();
+      if (id && id.startsWith("#")) {
+        e.preventDefault();
+        const target = id === "#top" ? 0 : document.querySelector(id);
+        if (target !== null) mr_lenis.scrollTo(target, { offset: -50, duration: 1.3 });
+      }
+    });
+  });
+})();
+
+/* MP3 — 데스크톱 nav 현재 섹션 활성 표시 */
+(function mr_activeNav() {
+  const map = Array.from(document.querySelectorAll('.nav__menu a[href^="#"]'))
+    .map((a) => ({ a, sec: document.querySelector(a.getAttribute("href")) }))
+    .filter((o) => o.sec);
+  if (!map.length) return;
+  map.forEach((o) => {
+    ScrollTrigger.create({
+      trigger: o.sec, start: "top center", end: "bottom center",
+      onToggle: (self) => {
+        if (self.isActive) {
+          map.forEach((x) => x.a.removeAttribute("aria-current"));
+          o.a.setAttribute("aria-current", "location");
+        }
+      },
+    });
+  });
+})();
+
+/* MP4 — SNS 죽은 링크 무력화 */
+document.querySelectorAll('[aria-disabled="true"]').forEach((el) => {
+  el.addEventListener("click", (e) => e.preventDefault());
+});
+
+/* MP4 — 뉴스레터 폼 피드백 */
+(function mr_news() {
+  const form = document.querySelector(".foot__news");
+  if (!form) return;
+  let msg = null;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!msg) {
+      msg = document.createElement("p");
+      msg.className = "foot__news-msg";
+      msg.setAttribute("aria-live", "polite");
+      form.after(msg);
+    }
+    const input = form.querySelector("input");
+    const has = input && input.value.trim();
+    msg.textContent = has ? "구독 신청이 접수되었습니다. 감사합니다." : "이메일 주소를 입력해 주세요.";
+    if (has) input.value = "";
+  });
+})();
 
 /* ---------- refresh ---------- */
 window.addEventListener("load", () => ScrollTrigger.refresh());

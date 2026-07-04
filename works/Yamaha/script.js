@@ -34,9 +34,12 @@ document.querySelectorAll("[data-link]").forEach((a) => {
 
 /* ---------- 우측 눈금: 진행 채움 + 활성 섹션 ---------- */
 const ym_fill = document.getElementById("rulerFill");
+const ym_mprog = document.getElementById("ymMprog"); /* YP2: 모바일 게이지 */
 ym_lenis.on("scroll", ({ scroll }) => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
-  if (ym_fill) ym_fill.style.transform = "scaleY(" + (max > 0 ? Math.min(1, scroll / max) : 0) + ")";
+  const p = max > 0 ? Math.min(1, scroll / max) : 0;
+  if (ym_fill) ym_fill.style.transform = "scaleY(" + p + ")";
+  if (ym_mprog) ym_mprog.style.transform = "scaleX(" + p + ")";
 });
 const ym_navLinks = gsap.utils.toArray(".ruler__list a");
 ym_navLinks.forEach((a) => {
@@ -44,7 +47,11 @@ ym_navLinks.forEach((a) => {
   if (!sec) return;
   ScrollTrigger.create({
     trigger: sec, start: "top 50%", end: "bottom 50%",
-    onToggle: (self) => a.classList.toggle("is-active", self.isActive),
+    onToggle: (self) => {
+      a.classList.toggle("is-active", self.isActive);
+      if (self.isActive) a.setAttribute("aria-current", "location"); /* YP3 */
+      else a.removeAttribute("aria-current");
+    },
   });
 });
 
@@ -221,3 +228,69 @@ ym_initRing();
 /* ---------- refresh ---------- */
 window.addEventListener("load", () => ScrollTrigger.refresh());
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+
+/* ============================================================
+   개선(리디자인) — YP1 드로어 · YP4 SNS
+   ============================================================ */
+(function ym_drawer() {
+  const burger = document.getElementById("ymBurger");
+  const drawer = document.getElementById("ymNav");
+  if (!burger || !drawer) return;
+  const closeBtn = document.getElementById("ymNavClose");
+  let lastFocus = null;
+  const focusables = () =>
+    Array.from(drawer.querySelectorAll("a[href], button")).filter((el) => el.offsetParent !== null);
+
+  function open() {
+    lastFocus = document.activeElement;
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    burger.classList.add("is-open");
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", "메뉴 닫기");
+    ym_lenis.stop();
+    document.documentElement.style.overflow = "hidden";
+    const f = focusables();
+    if (f.length) f[0].focus();
+  }
+  function close() {
+    if (!drawer.classList.contains("is-open")) return;
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    burger.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "메뉴 열기");
+    ym_lenis.start();
+    document.documentElement.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  burger.addEventListener("click", () => (drawer.classList.contains("is-open") ? close() : open()));
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (!drawer.classList.contains("is-open")) return;
+    if (e.key === "Escape") { close(); return; }
+    if (e.key === "Tab") {
+      const f = focusables();
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  drawer.querySelectorAll("[data-mclose]").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      close();
+      if (id && id.startsWith("#")) {
+        e.preventDefault();
+        const target = id === "#top" ? 0 : document.querySelector(id);
+        if (target !== null) ym_lenis.scrollTo(target, { offset: -40, duration: 1.2 });
+      }
+    });
+  });
+})();
+
+/* YP4 — 준비 중(aria-disabled) 링크 무력화 */
+document.querySelectorAll('[aria-disabled="true"]').forEach((el) => {
+  el.addEventListener("click", (e) => e.preventDefault());
+});

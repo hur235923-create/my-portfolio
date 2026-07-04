@@ -35,8 +35,23 @@
         <a href="#designers" data-link>Designers</a>
       </nav>
       <p class="nav__est">Est. 1928 — Hiroshima</p>
+      <button class="nav__burger" id="mrBurger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mrNav">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
     </div>
   </header>
+
+  <!-- MP1: 모바일 내비게이션 드로어 -->
+  <div class="mnav" id="mrNav" aria-hidden="true">
+    <div class="mnav__panel" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+      <button class="mnav__close" id="mrNavClose" type="button" aria-label="메뉴 닫기">Close ×</button>
+      <nav class="mnav__list" aria-label="주요 메뉴">
+        <a href="#collection" data-mclose><b>Collection</b><span>Maruni Collection</span></a>
+        <a href="#craft" data-mclose><b>Craft</b><span>Industrialised craft</span></a>
+        <a href="#designers" data-mclose><b>Designers</b><span>Fukasawa · Morrison</span></a>
+      </nav>
+    </div>
+  </div>
 
   <span id="top"></span>
 
@@ -200,9 +215,9 @@
         <p><span>Factory</span> Hiroshima, Japan · TEL +81 (0)3-3677-4131</p>
       </div>
       <nav class="foot__sns" aria-label="소셜 미디어">
-        <a href="#">Instagram</a>
-        <a href="#">Pinterest</a>
-        <a href="#">YouTube</a>
+        <a href="#" aria-disabled="true">Instagram</a>
+        <a href="#" aria-disabled="true">Pinterest</a>
+        <a href="#" aria-disabled="true">YouTube</a>
       </nav>
     </div>
     <p class="foot__copy">© 2011– MARUNI WOOD INDUSTRY INC. Redesign concept by 허강범.</p>

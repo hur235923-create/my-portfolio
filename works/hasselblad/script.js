@@ -246,6 +246,104 @@ if (hb_lb) {
   window.addEventListener("keydown", (e) => { if (e.key === "Escape" && hb_lb.classList.contains("is-open")) closeLB(); });
 }
 
+/* ============================================================
+   개선(리디자인) — HP1 드로어 · HP2 READ MORE · HP3 트랩 · HP4 활성 nav
+   ============================================================ */
+
+/* HP1 — 모바일 드로어 */
+(function hb_drawer() {
+  const burger = document.getElementById("hbBurger");
+  const drawer = document.getElementById("hbNav");
+  if (!burger || !drawer) return;
+  const closeBtn = document.getElementById("hbNavClose");
+  let lastFocus = null;
+  const focusables = () =>
+    Array.from(drawer.querySelectorAll("a[href], button")).filter((el) => el.offsetParent !== null);
+
+  function open() {
+    lastFocus = document.activeElement;
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    burger.classList.add("is-open");
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", "메뉴 닫기");
+    hb_lenis.stop();
+    document.documentElement.style.overflow = "hidden";
+    const f = focusables();
+    if (f.length) f[0].focus();
+  }
+  function close() {
+    if (!drawer.classList.contains("is-open")) return;
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    burger.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "메뉴 열기");
+    hb_lenis.start();
+    document.documentElement.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  burger.addEventListener("click", () => (drawer.classList.contains("is-open") ? close() : open()));
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (!drawer.classList.contains("is-open")) return;
+    if (e.key === "Escape") { close(); return; }
+    if (e.key === "Tab") {
+      const f = focusables();
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  drawer.querySelectorAll("[data-mclose]").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      close();
+      if (id && id.startsWith("#")) {
+        e.preventDefault();
+        const target = id === "#top" ? 0 : document.querySelector(id);
+        if (target !== null) hb_lenis.scrollTo(target, { offset: -70, duration: 1.2 });
+      }
+    });
+  });
+})();
+
+/* HP2 — READ MORE 죽은 링크(#) 무력화 */
+document.querySelectorAll('.link-more[href="#"]').forEach((el) => {
+  el.setAttribute("aria-disabled", "true");
+  el.addEventListener("click", (e) => e.preventDefault());
+});
+
+/* HP3 — 라이트박스 포커스 트랩(닫기 버튼 고정) */
+(function hb_lbTrap() {
+  const lb = document.getElementById("lightbox");
+  const closeB = document.getElementById("lightboxClose");
+  if (!lb || !closeB) return;
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Tab" && lb.classList.contains("is-open")) { e.preventDefault(); closeB.focus(); }
+  });
+})();
+
+/* HP4 — 데스크톱 nav 현재 섹션 활성 표시 */
+(function hb_activeNav() {
+  const map = Array.from(document.querySelectorAll('.nav__menu a[href^="#"]'))
+    .map((a) => ({ a, sec: document.querySelector(a.getAttribute("href")) }))
+    .filter((o) => o.sec);
+  if (!map.length) return;
+  map.forEach((o) => {
+    ScrollTrigger.create({
+      trigger: o.sec, start: "top center", end: "bottom center",
+      onToggle: (self) => {
+        if (self.isActive) {
+          map.forEach((x) => x.a.removeAttribute("aria-current"));
+          o.a.setAttribute("aria-current", "location");
+        }
+      },
+    });
+  });
+})();
+
 /* ---------- refresh ---------- */
 window.addEventListener("load", () => ScrollTrigger.refresh());
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
