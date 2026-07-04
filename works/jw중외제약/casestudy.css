@@ -78,12 +78,24 @@ html.js .cs-reveal{will-change:opacity,transform;}
   border:1px solid var(--line-d);border-radius:.7rem;background:rgba(7,34,58,.35);}
 .cs-audit dt{font:500 .9rem/1.4 var(--mono);color:var(--cyan);}
 
+/* 04 · Problem Statement / 05 · Design Goal */
+.cs-pains{list-style:none;display:grid;gap:1rem;margin:1.8rem 0;}
+.cs-pains li{display:grid;grid-template-columns:3.4rem 1fr;gap:1.1rem;align-items:start;}
+.cs-pno,.cs-gno{font:600 1.1rem/1 var(--mono);color:var(--vital);}
+.cs-pains em{display:block;margin-top:.5rem;color:var(--mute);font-style:normal;font-size:.9rem;}
+.cs-quote{margin-top:2rem;padding:1.6rem 1.8rem;border-left:3px solid var(--cyan);
+  background:rgba(7,34,58,.4);border-radius:0 .8rem .8rem 0;font-size:clamp(1.1rem,1vw + .9rem,1.45rem);line-height:1.6;}
+.cs-goals{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.8rem;}
+.cs-goals .cs-card{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:start;}
+.cs-goals .cs-gno{color:var(--cyan);}
+
 @media (max-width:960px){:root{--maxw:100%;}}
 @media (max-width:760px){
   .cs-hud__title{display:none;}
   .cs-sec{min-height:auto;}
   .cs-grid3{grid-template-columns:1fr;}
   .cs-audit div{grid-template-columns:1fr;gap:.35rem;}
+  .cs-goals{grid-template-columns:1fr;}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
