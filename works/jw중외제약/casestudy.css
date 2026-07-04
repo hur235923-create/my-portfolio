@@ -66,10 +66,24 @@ html.js .cs-reveal{will-change:opacity,transform;}
 .cs-intro__meta dd{font-size:.95rem;margin-top:.35rem;}
 .cs-intro__hint{margin-top:3rem;font:500 .78rem/1 var(--mono);letter-spacing:.14em;color:var(--cyan);}
 
+/* 02 · Service Understanding / 03 · UX Audit */
+.cs-lead{max-width:52ch;color:#c8d8e6;margin:.4rem 0 2rem;}
+.cs-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem;}
+.cs-card h3{font:600 1.05rem/1.3 var(--sans);color:var(--cyan);margin-bottom:.7rem;}
+.cs-card ul{list-style:none;display:grid;gap:.6rem;}
+.cs-card li{padding-left:1rem;position:relative;}
+.cs-card li::before{content:"—";position:absolute;left:0;color:var(--cyan);}
+.cs-audit{display:grid;gap:.9rem;margin-top:1.6rem;}
+.cs-audit div{display:grid;grid-template-columns:11rem 1fr;gap:1rem;padding:1rem 1.2rem;
+  border:1px solid var(--line-d);border-radius:.7rem;background:rgba(7,34,58,.35);}
+.cs-audit dt{font:500 .9rem/1.4 var(--mono);color:var(--cyan);}
+
 @media (max-width:960px){:root{--maxw:100%;}}
 @media (max-width:760px){
   .cs-hud__title{display:none;}
   .cs-sec{min-height:auto;}
+  .cs-grid3{grid-template-columns:1fr;}
+  .cs-audit div{grid-template-columns:1fr;gap:.35rem;}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
