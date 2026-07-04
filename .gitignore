@@ -7,3 +7,8 @@ Thumbs.db
 _verify*.mjs
 _verify*.png
 *.log
+
+# Node / Playwright verification harness (not part of the site)
+node_modules/
+package.json
+package-lock.json
