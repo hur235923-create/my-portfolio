@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hasselblad 리디자인 — UX 케이스 스터디 · 허강범</title>
+  <meta name="description" content="1941년 스웨덴 중형 포맷 헤리티지. hasselblad.com 실측 진단에서 출발해 '다크 럭셔리' 단일 서사로 재편한 리디자인의 UX 사고 과정을 12단계로 기록한 케이스 스터디." />
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <!-- 컴포넌트 단위 CSS (순서 = 캐스케이드 순서) -->
+  <link rel="stylesheet" href="css/casestudy/base.css" />
+  <link rel="stylesheet" href="css/casestudy/hud.css" />
+  <link rel="stylesheet" href="css/casestudy/sections.css" />
+  <link rel="stylesheet" href="css/casestudy/intro.css" />
+  <link rel="stylesheet" href="css/casestudy/content.css" />
+  <link rel="stylesheet" href="css/casestudy/responsive.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="js/casestudy.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#cs-main">본문으로 건너뛰기</a>
+
+  <!-- 상단 고정 HUD -->
+  <header class="cs-hud" aria-label="케이스 스터디 탐색">
+    <a class="cs-hud__back" href="../../index.html">← 포트폴리오</a>
+    <div class="cs-hud__center">
+      <span class="cs-hud__title">HASSELBLAD · UX CASE STUDY</span>
+      <span class="cs-hud__counter" id="csCounter" aria-live="polite">01 / 12</span>
+    </div>
+    <a class="cs-hud__live" href="index.html">라이브 보기 <span aria-hidden="true">↗</span></a>
+    <span class="cs-hud__gauge" aria-hidden="true"><span class="cs-hud__gauge-fill" id="csGauge"></span></span>
+  </header>
+
+  <main id="cs-main">
+    <!-- 01 · Project Intro -->
+    <section class="cs-sec cs-intro" id="sec-01" aria-labelledby="t01" data-idx="1">
+      <img class="cs-intro__bg" src="img/shots/hero.jpg" alt="" aria-hidden="true" />
+      <div class="cs-intro__inner">
+        <span class="cs-kicker cs-reveal">UX CASE STUDY — 2026</span>
+        <h2 class="cs-intro__title cs-reveal" id="t01">모든 프레임에 유산을<span lang="en">LEGACY IN EVERY FRAME</span></h2>
+        <p class="cs-intro__lead cs-reveal">1941년 스웨덴에서 시작된 중형 포맷의 헤리티지. '기업 카탈로그'처럼 흩어져 있던
+          hasselblad.com을 <b>다크 럭셔리 단일 서사</b>로 재해석한 리디자인의 UX 사고 과정을 12단계로 기록한다.</p>
+        <dl class="cs-intro__meta cs-reveal">
+          <div><dt>ROLE</dt><dd>디자인 · 프론트엔드</dd></div>
+          <div><dt>STACK</dt><dd>WebGL · GSAP · Lenis</dd></div>
+          <div><dt>YEAR</dt><dd>2026</dd></div>
+        </dl>
+        <p class="cs-intro__hint cs-reveal" aria-hidden="true">SCROLL — 아래로 이어집니다</p>
+      </div>
+    </section>
+
+    <!-- 02 · Service Understanding -->
+    <section class="cs-sec" id="sec-02" aria-labelledby="t02" data-idx="2">
+      <span class="cs-kicker cs-reveal">02 — Service Understanding</span>
+      <h2 class="cs-reveal" id="t02">브랜드와 사용자를 먼저 이해한다</h2>
+      <div class="cs-grid3">
+        <div class="cs-card cs-reveal"><h3>브랜드 목적</h3><p>1941년 창립한 스웨덴 중형 포맷 카메라 제조사.
+          모토 <em>Create to Inspire</em> — 도구가 아니라 '창작의 유산'을 파는 브랜드다. 달 착륙 촬영 등
+          사진사(史)의 결정적 순간을 함께한 헤리티지가 핵심 자산이다.</p></div>
+        <div class="cs-card cs-reveal"><h3>핵심 가치</h3><p>80년 헤리티지 · 1억~4억 화소의 극한 화질 · 장인정신 · 프리미엄(고가·소수 정예).
+          가격이 아니라 '결과물의 격(格)'으로 설득해야 하는 제품군이다.</p></div>
+        <div class="cs-card cs-reveal"><h3>주요 사용자 (3층위)</h3>
+          <ul><li><b>구매 검토 전문가·하이아마추어</b> — X·V·H 시스템과 렌즈 스펙, 확장성 비교</li>
+            <li><b>브랜드 동경층·입문자</b> — 헤리티지와 작가 사례로 '언젠가의 구매'를 꿈꾸는 잠재고객</li>
+            <li><b>채용담당자·동료</b> — 리디자인 완성도와 인터랙션 구현력을 평가</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 03 · UX Audit -->
+    <section class="cs-sec" id="sec-03" aria-labelledby="t03" data-idx="3">
+      <span class="cs-kicker cs-reveal">03 — UX Audit</span>
+      <h2 class="cs-reveal" id="t03">기존 사이트를 진단한다</h2>
+      <p class="cs-lead cs-reveal">2026-07-05 실제 hasselblad.com을 직접 접속·렌더링해 실측한 결과.
+        내비·IA·콘텐츠는 라이브 확인, 접근성·시맨틱은 렌더된 DOM 기준이며 관측 한계는 명시한다.</p>
+      <dl class="cs-audit">
+        <div class="cs-reveal"><dt>정보구조(IA)</dt><dd>글로벌 내비가 <b>X System · V System · Phocus · Support · Where to Buy · Store</b>로 시작 —
+          제품 시스템이 우선이고, 1941 헤리티지 서사는 'About Hasselblad' 하위로 밀려 분산된다.</dd></div>
+        <div class="cs-reveal"><dt>헤리티지 분산</dt><dd>1941·달 착륙 등 강력한 유산이 Inspiration 하위(Iconic Moments·Masters·Heroines·Moments)로
+          흩어져, '하나의 유산 서사'가 아니라 캠페인 조각들로 존재한다.</dd></div>
+        <div class="cs-reveal"><dt>내비게이션</dt><dd>메가메뉴에 Products / Inspiration / Support / Get a Hasselblad / Learn 등 항목이 많아
+          프리미엄의 '절제'보다 정보량이 앞선다.</dd></div>
+        <div class="cs-reveal"><dt>시각 계층</dt><dd>홈은 사진 중심·저텍스트로 브랜드 톤은 잘 선다(강점). 다만 히어로 이후가
+          X2D II 100C → 렌즈 → 907X → 작가 스토리 → Iconic Moments → 뉴스레터의 <b>프로모 블록 나열</b>이라
+          판촉 카탈로그 리듬에 가깝다.</dd></div>
+        <div class="cs-reveal"><dt>인터랙션</dt><dd>홈에 <code>&lt;video&gt;</code>·<code>&lt;canvas&gt;</code>가 관측되지 않음(정적 이미지 중심).
+          '정밀·장인정신'을 체감시킬 모션 장치는 발견되지 않았다.</dd></div>
+        <div class="cs-reveal"><dt>접근성</dt><dd>시맨틱 랜드마크 존재, 홈 이미지 대체텍스트 누락 <b>0건</b>(강점). 그러나 <b>h1 남발</b>로 제목 위계가
+          평평하고 <b>skip-link 부재</b> → 스크린리더 wayfinding·키보드 건너뛰기가 취약하다.</dd></div>
+        <div class="cs-reveal"><dt>모바일</dt><dd>390px에서 가로 오버플로우 없음(강점). 표준 햄버거 패턴은 자동 탐지되지 않아
+          소형 화면 내비 방식은 추가 확인이 필요(관측 한계).</dd></div>
+      </dl>
+    </section>
+
+    <!-- 04 · Problem Statement -->
+    <section class="cs-sec" id="sec-04" aria-labelledby="t04" data-idx="4">
+      <span class="cs-kicker cs-reveal">04 — Problem Statement</span>
+      <h2 class="cs-reveal" id="t04">무엇이, 왜 문제인가</h2>
+      <ol class="cs-pains">
+        <li class="cs-card cs-reveal"><span class="cs-pno">P1</span><p>헤리티지가 <b>'읽어야 아는 정보'로 묻혀</b>, 첫 화면에서 브랜드의 격이 즉시 전달되지 않는다.
+          <em>← IA가 '제품 카탈로그'를 우선해 브랜드 서사를 종속 페이지로 밀어냄</em></p></li>
+        <li class="cs-card cs-reveal"><span class="cs-pno">P2</span><p>제품군이 개별 나열되어 <b>X/V/H가 '하나의 시스템'</b>이라는 구조로 인지되지 않는다.
+          <em>← 제품을 SKU 단위로 다루고 '시스템'을 IA로 승격하지 않음</em></p></li>
+        <li class="cs-card cs-reveal"><span class="cs-pno">P3</span><p>결과물(작례)이 프로모 블록에 흩어져, 구매 동기의 핵심인 <b>'시각적 증거'가 하나의 갤러리로 응집되지 못한다.</b>
+          <em>← 사진은 풍부하나 캠페인 단위로 분산, '주인공'으로 세우는 응집된 뷰 부재</em></p></li>
+        <li class="cs-card cs-reveal"><span class="cs-pno">P4</span><p><b>정적 인터랙션</b>이 '정밀·장인정신'이라는 브랜드 속성을 체감시키지 못한다.
+          <em>← 모션을 장식으로만 인식, 브랜드 속성을 인터랙션 언어로 번역하지 않음</em></p></li>
+        <li class="cs-card cs-reveal"><span class="cs-pno">P5</span><p>로딩 순간의 <b>브랜드 첫인상이 비어 있어</b>, 진입 직후 격이 형성되지 않는다.
+          <em>← 로딩을 '기다림'으로만 처리, 브랜드 연출 기회로 활용하지 않음</em></p></li>
+      </ol>
+      <blockquote class="cs-quote cs-reveal">사용자는 "이 브랜드가 왜 특별하고, 이 카메라로 어떤 이미지를 만들 수 있는지"를 감정적으로
+        확신하려 하지만, 헤리티지가 묻혀 있고 결과물이 부속 이미지로 처리되어 <b>확신에 이르지 못한다.</b></blockquote>
+    </section>
+
+    <!-- 05 · Design Goal -->
+    <section class="cs-sec" id="sec-05" aria-labelledby="t05" data-idx="5">
+      <span class="cs-kicker cs-reveal">05 — Design Goal</span>
+      <h2 class="cs-reveal" id="t05">디자인 목표</h2>
+      <div class="cs-goals">
+        <div class="cs-card cs-reveal"><span class="cs-gno">G1</span><p>진입 3초 안에 <b>'헤리티지 · 다크 럭셔리'</b>라는 브랜드 격을 체감시킨다. <em>(→ P1·P5)</em></p></div>
+        <div class="cs-card cs-reveal"><span class="cs-gno">G2</span><p>제품을 <b>'X · V · H System'</b>이라는 하나의 정돈된 세계관으로 재구조화한다. <em>(→ P2)</em></p></div>
+        <div class="cs-card cs-reveal"><span class="cs-gno">G3</span><p>결과물(작례)을 <b>콘텐츠의 주인공</b>으로 승격해 시각적 설득력을 극대화한다. <em>(→ P3)</em></p></div>
+        <div class="cs-card cs-reveal"><span class="cs-gno">G4</span><p>'정밀·빛'이라는 브랜드 속성을 <b>인터랙션 언어로 번역</b>하되 60fps·접근성을 지킨다. <em>(→ P4)</em></p></div>
+      </div>
+    </section>
+
+    <!-- 06 · UX Strategy -->
+    <section class="cs-sec" id="sec-06" aria-labelledby="t06" data-idx="6">
+      <span class="cs-kicker cs-reveal">06 — UX Strategy</span>
+      <h2 class="cs-reveal" id="t06">'감정→구조→증거' 단일 서사로 재편</h2>
+      <ol class="cs-flow cs-reveal" aria-label="재편된 정보구조 흐름">
+        <li>Hero<span>감정</span></li><li>About<span>헤리티지</span></li><li>Products<span>시스템</span></li>
+        <li>Inspiration<span>작례</span></li><li>Ambassadors<span>신뢰</span></li><li>Discover<span>갤러리</span></li>
+      </ol>
+      <ul class="cs-strat">
+        <li class="cs-reveal"><b>S1 서사 우선 IA</b> — Hero → About → Products → Inspiration → Ambassadors → Discover의 '감정 → 구조 → 증거' 스토리라인으로 단일 페이지 재편.</li>
+        <li class="cs-reveal"><b>S2 절제된 내비게이션</b> — About/Products/Inspiration/Discover 4개 앵커 + EST.1941 시그니처. 분산된 메가메뉴를 제거해 프리미엄의 '여백' 확보.</li>
+        <li class="cs-reveal"><b>S3 제품의 시스템화</b> — 가로 핀(pin) 쇼케이스로 X→V→H→Lens를 '한 축의 흐름'으로 제시, 번호(01–04)로 시스템 계층을 시각화.</li>
+        <li class="cs-reveal"><b>S4 결과물 주인공화</b> — 흩어진 작례를 Inspiration 스토리 + Discover 매트릭스 갤러리 + 라이트박스 확대로 '하나의 갤러리'에 응집.</li>
+        <li class="cs-reveal"><b>S5 브랜드 속성의 모션 번역</b> — 시네마틱 프리로더 · 마우스 반응 WebGL 히어로 · 헤딩 클립 리빌 · 키네틱 마퀴 · 커스텀 커서로 '정밀·빛'을 촉각화.</li>
+        <li class="cs-reveal"><b>S6 성능·접근성 병행</b> — skip-link, aria 라벨, 대체텍스트, prefers-reduced-motion 고려로 화려함과 책임감을 함께.</li>
+      </ul>
+    </section>
+
+    <!-- 07 · UI Design -->
+    <section class="cs-sec" id="sec-07" aria-labelledby="t07" data-idx="7">
+      <span class="cs-kicker cs-reveal">07 — UI Design</span>
+      <h2 class="cs-reveal" id="t07">전략을 화면으로 옮기다</h2>
+      <div class="cs-uigrid">
+        <figure class="cs-shot cs-reveal"><img src="img/shots/hero.jpg" alt="실사 카메라 위 WebGL glow가 얹힌 히어로 — 'Legacy in Every Frame'" loading="lazy" />
+          <figcaption><b>Hero</b> 실사 카메라 + <code>&lt;canvas&gt;</code> WebGL glow, 클립된 2행 타이틀 리빌, SCROLL 인디케이터로 첫 격을 형성. (G1)</figcaption></figure>
+        <figure class="cs-shot cs-reveal"><img src="img/shots/about.jpg" alt="1941 카운트업과 대형 세리프 헤딩의 About 헤리티지 섹션" loading="lazy" />
+          <figcaption><b>About</b> 1941 카운트업 + 대형 세리프 + 패럴랙스 이미지 그리드로 헤리티지를 첫 서사 블록으로 승격. (P1 해결)</figcaption></figure>
+        <figure class="cs-shot cs-reveal"><img src="img/shots/products.jpg" alt="가로 핀 쇼케이스로 배치된 X·V·H·Lens 제품 카드" loading="lazy" />
+          <figcaption><b>Products</b> 가로 핀 쇼케이스(01 X / 02 V / 03 H / 04 Lens)로 개별 제품이 아닌 '시스템의 순서'로 재구조화. (P2 해결)</figcaption></figure>
+        <figure class="cs-shot cs-reveal"><img src="img/shots/inspiration.jpg" alt="작가·장비 맥락 캡션이 붙은 Inspiration 작례 스토리" loading="lazy" />
+          <figcaption><b>Inspiration</b> 피처 스토리 + 작가·장비 맥락 캡션으로 흩어진 작례에 서사를 부여. (P3)</figcaption></figure>
+        <figure class="cs-shot cs-reveal"><img src="img/shots/discover.jpg" alt="비대칭 매트릭스 갤러리로 응집된 Discover 작례 모음" loading="lazy" />
+          <figcaption><b>Discover</b> data-span 기반 비대칭 매트릭스 갤러리 + 라이트박스 확대로 결과물을 '하나의 갤러리'에 응집·전시. (P3 해결)</figcaption></figure>
+        <figure class="cs-shot cs-reveal"><img src="img/shots/mobile.jpg" alt="모바일 뷰의 히어로와 내비 드로어" loading="lazy" />
+          <figcaption><b>Ambassadors · Mobile</b> 전문가 인용·포트레이트로 사회적 증거를 제공하고, 모바일 드로어로 탐색을 회복. (신뢰 · HP1)</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 08 · Design System -->
+    <section class="cs-sec" id="sec-08" aria-labelledby="t08" data-idx="8">
+      <span class="cs-kicker cs-reveal">08 — Design System</span>
+      <h2 class="cs-reveal" id="t08">'다크 럭셔리' 디자인 시스템</h2>
+      <h3 class="cs-sub cs-reveal">Palette</h3>
+      <ul class="cs-swatches cs-reveal">
+        <li style="--c:#0b0b0c"><span></span>ink<em>#0B0B0C</em></li>
+        <li style="--c:#141519"><span></span>graphite<em>#141519</em></li>
+        <li style="--c:#1b1c21"><span></span>panel<em>#1B1C21</em></li>
+        <li style="--c:#f2f1ec"><span></span>paper<em>#F2F1EC</em></li>
+        <li style="--c:#9a9ca3"><span></span>muted<em>#9A9CA3</em></li>
+        <li style="--c:#c2a98f"><span></span>accent<em>#C2A98F</em></li>
+      </ul>
+      <h3 class="cs-sub cs-reveal">Typography</h3>
+      <div class="cs-type cs-reveal">
+        <p class="cs-type__serif">Playfair Display — Legacy in Every Frame<em>제목 · 헤리티지의 격</em></p>
+        <p class="cs-type__sans">Noto Sans KR — 모든 프레임에 유산을 담다<em>본문 · 라벨 · 현대적 명료함</em></p>
+      </div>
+      <h3 class="cs-sub cs-reveal">Motion</h3>
+      <p class="cs-lead cs-reveal">시네마틱 프리로더(로딩=개막) · 마우스 반응 WebGL 히어로 · 헤딩 클립 리빌 · 키네틱 마퀴 · 커스텀 커서 —
+        모두 <code>prefers-reduced-motion</code>에서 축소한다. ease는 <code>cubic-bezier(0.22, 1, 0.36, 1)</code> 하나로 통일해 리듬을 일관되게 유지.</p>
+    </section>
+
+    <!-- 09 · Final Design -->
+    <section class="cs-sec" id="sec-09" aria-labelledby="t09" data-idx="9">
+      <span class="cs-kicker cs-reveal">09 — Final Design</span>
+      <h2 class="cs-reveal" id="t09">완성된 화면</h2>
+      <figure class="cs-final cs-reveal"><img src="img/shots/full.jpg" alt="Hasselblad 리디자인 히어로 풀뷰" loading="lazy" /></figure>
+      <div class="cs-final-row">
+        <figure class="cs-reveal"><img src="img/shots/discover.jpg" alt="Discover 매트릭스 갤러리" loading="lazy" /></figure>
+        <figure class="cs-reveal"><img src="img/shots/mobile.jpg" alt="모바일 뷰" loading="lazy" /></figure>
+      </div>
+      <a class="cs-livecta cs-reveal" href="index.html">라이브 사이트에서 직접 경험하기 <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <!-- 10 · Before / After -->
+    <section class="cs-sec" id="sec-10" aria-labelledby="t10" data-idx="10">
+      <span class="cs-kicker cs-reveal">10 — Before / After</span>
+      <h2 class="cs-reveal" id="t10">결함을 보강하다 <small>컨셉 보존형 2차 개선</small></h2>
+      <div class="cs-ba">
+        <div class="cs-ba__row cs-reveal"><span class="cs-ba__tag">HP1 모바일 내비</span>
+          <div class="cs-ba__b"><b>Before</b> ≤720px에서 nav 메뉴를 대체 없이 display:none — 모바일에 섹션 이동 수단 전무.</div>
+          <div class="cs-ba__a"><b>After</b> 우상단 햄버거 → 다크 럭셔리 풀스크린 드로어(포커스 트랩·ESC·스크롤 락·포커스 복귀).</div></div>
+        <div class="cs-ba__row cs-reveal"><span class="cs-ba__tag">HP2 READ MORE</span>
+          <div class="cs-ba__b"><b>Before</b> "READ MORE"(.link-more) 6곳이 href="#" → 클릭 시 페이지 최상단으로 점프.</div>
+          <div class="cs-ba__a"><b>After</b> 해당 링크에 aria-disabled="true" + 클릭 무력화(preventDefault). 상세 확보 시 실제 링크로 승격.</div></div>
+        <div class="cs-ba__row cs-reveal"><span class="cs-ba__tag">HP3 라이트박스</span>
+          <div class="cs-ba__b"><b>Before</b> 라이트박스가 열려도 Tab 시 포커스가 뒤 페이지로 이탈 — 모달 트랩 미비.</div>
+          <div class="cs-ba__a"><b>After</b> open 상태에서 Tab을 닫기 버튼으로 고정, 포커스를 모달 내부에 가둔다.</div></div>
+        <div class="cs-ba__row cs-reveal"><span class="cs-ba__tag">HP4 nav 활성 표시</span>
+          <div class="cs-ba__b"><b>Before</b> nav 링크에 현재 섹션 표시가 없어 롱스크롤 wayfinding이 약함.</div>
+          <div class="cs-ba__a"><b>After</b> 스크롤 시 활성 섹션 링크에 aria-current="location" + 밑줄 유지(기존 스타일 재사용).</div></div>
+      </div>
+    </section>
+
+    <!-- 11 · Expected Outcome -->
+    <section class="cs-sec" id="sec-11" aria-labelledby="t11" data-idx="11">
+      <span class="cs-kicker cs-reveal">11 — Expected Outcome</span>
+      <h2 class="cs-reveal" id="t11">기대 효과</h2>
+      <ul class="cs-out">
+        <li class="cs-reveal">진입 즉시 '다크 럭셔리 헤리티지'가 체감되어 <b>초기 이탈이 줄고 브랜드 격 인지가 상승</b>한다. (P1·P5)</li>
+        <li class="cs-reveal">제품이 '시스템'으로 조망되어 <b>전문가의 라인업 이해 시간이 단축</b>된다. (P2)</li>
+        <li class="cs-reveal">작례가 주인공으로 전시되어 '나도 저런 이미지를' <b>동경이 커지고 구매 동기가 강화</b>된다. (P3)</li>
+        <li class="cs-reveal">프리로더·WebGL·클립 리빌이 <b>'정밀·빛'이라는 브랜드 속성을 정서적으로 각인</b>한다. (P4)</li>
+        <li class="cs-reveal">skip-link·aria·alt로 <b>화려함과 접근성을 동시에 만족</b> → 폭넓은 사용자를 포용한다.</li>
+      </ul>
+    </section>
+
+    <!-- 12 · Project Reflection -->
+    <section class="cs-sec cs-reflect" id="sec-12" aria-labelledby="t12" data-idx="12">
+      <span class="cs-kicker cs-reveal">12 — Project Reflection</span>
+      <h2 class="cs-reveal" id="t12">회고</h2>
+      <div class="cs-reflect__body cs-reveal">
+        <p>이 프로젝트에서 가장 신경 쓴 것은 <b>'컨셉을 지키면서 결함만 보강'</b>하는 균형이었다. 다크 럭셔리·프리로더·WebGL
+          히어로·가로 핀 쇼케이스·라이트박스는 브랜드 격을 만드는 핵심 자산이라 손대지 않되, 모바일 내비 소멸이나 죽은
+          READ MORE 링크처럼 실제 사용자를 막는 결함은 코드 레벨에서 근거(파일:라인)를 짚어 국소적으로 고쳤다.</p>
+        <p>몰입형 인터랙션과 <b>접근성·성능</b>은 자주 충돌했다. WebGL 히어로·시네마틱 프리로더로 '빛'을 체감시키되,
+          모든 신규 모션을 <code>prefers-reduced-motion</code>에서 축소하고 라이트박스에는 포커스 트랩을 더하는 식으로
+          '화려함'과 '책임감' 사이를 조율했다. 결과의 감도만큼이나 <b>왜 그렇게 했는지를 설명할 수 있는가</b>가 중요하다는 걸 배웠다.</p>
+        <p>남은 과제도 솔직히 남겨둔다. 제품 상세 페이지가 아직 없어 READ MORE는 aria-disabled placeholder로 처리했고,
+          WebGL 히어로의 60fps·모바일 발열은 브라우저 실측으로 계속 확인이 필요하다. 이 케이스 스터디는 그 과정을 감추지
+          않고 드러내는 기록이다.</p>
+      </div>
+      <div class="cs-reflect__cta cs-reveal">
+        <a href="../../index.html">← 포트폴리오로 돌아가기</a>
+        <a class="cs-livecta" href="index.html">라이브 사이트 보기 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
