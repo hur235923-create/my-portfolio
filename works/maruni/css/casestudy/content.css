@@ -1,0 +1,104 @@
+
+/* 02 · Service Understanding / 03 · UX Audit */
+.cs-lead{max-width:56ch;color:var(--ink-soft);margin:.4rem 0 2rem;}
+.cs-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem;}
+.cs-card h3{font-family:var(--display);font-weight:600;font-size:1.4rem;line-height:1.25;
+  color:var(--walnut);margin-bottom:.7rem;letter-spacing:0;}
+.cs-card p{color:var(--espresso);font-weight:400;}
+.cs-card ul{list-style:none;display:grid;gap:.6rem;}
+.cs-card li{padding-left:1rem;position:relative;color:var(--espresso);}
+.cs-card li::before{content:"—";position:absolute;left:0;color:var(--walnut);}
+.cs-audit{display:grid;gap:.9rem;margin-top:1.6rem;}
+.cs-audit div{display:grid;grid-template-columns:12rem 1fr;gap:1rem;padding:1rem 1.2rem;
+  border:1px solid var(--line);border-radius:.7rem;background:var(--oat);}
+.cs-audit dt{font-family:var(--display);font-weight:600;font-size:1.15rem;line-height:1.4;
+  letter-spacing:0;color:var(--walnut);}
+.cs-audit dd{color:var(--espresso);font-weight:400;}
+
+/* 04 · Problem Statement / 05 · Design Goal */
+.cs-pains{list-style:none;display:grid;gap:1rem;margin:1.8rem 0;}
+.cs-pains li{display:grid;grid-template-columns:3.4rem 1fr;gap:1.1rem;align-items:start;}
+.cs-pno,.cs-gno{font:600 1.15rem/1 var(--sans);color:var(--walnut);}
+.cs-pains p{color:var(--espresso);font-weight:400;}
+.cs-pains em{display:block;margin-top:.5rem;color:var(--ink-soft);font-style:italic;font-size:.92rem;}
+.cs-quote{margin-top:2rem;padding:1.8rem 2rem;border-left:3px solid var(--walnut);
+  background:var(--oat);border-radius:0 .8rem .8rem 0;font-family:var(--display);
+  font-weight:500;font-style:italic;font-size:clamp(1.35rem,1vw + 1.1rem,1.8rem);line-height:1.45;}
+.cs-quote b{font-style:normal;color:var(--walnut);font-weight:600;}
+.cs-goals{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.8rem;}
+.cs-goals .cs-card{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:start;}
+.cs-goals p{color:var(--espresso);font-weight:400;}
+
+/* 06 · UX Strategy */
+.cs-flow{list-style:none;display:flex;flex-wrap:wrap;gap:.7rem;margin:1.8rem 0 2.2rem;}
+.cs-flow li{position:relative;flex:1 1 7rem;text-align:center;padding:1rem .6rem;border-radius:.7rem;
+  background:var(--sand);border:1px solid var(--glass-line);
+  font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--espresso);}
+.cs-flow li span{display:block;font:500 .66rem/1 var(--sans);letter-spacing:.1em;color:var(--walnut);
+  margin-top:.4rem;text-transform:uppercase;}
+.cs-flow li:not(:last-child)::after{content:"→";position:absolute;right:-.6rem;top:50%;
+  transform:translateY(-50%);color:var(--walnut);font-size:.9rem;z-index:1;}
+.cs-strat{list-style:none;display:grid;gap:.8rem;}
+.cs-strat li{padding:1rem 1.2rem;border:1px solid var(--line);border-radius:.7rem;
+  background:var(--oat);color:var(--espresso);font-weight:400;}
+.cs-strat b{color:var(--walnut);font-weight:600;}
+
+/* 07 · UI Design / 09 · Final Design */
+.cs-uigrid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2rem;}
+.cs-shot img,.cs-final img,.cs-final-row img{width:100%;height:100%;object-fit:cover;
+  border-radius:.8rem;border:1px solid var(--glass-line);display:block;}
+.cs-shot figcaption{margin-top:.7rem;color:var(--ink-soft);font-size:.94rem;font-weight:400;}
+.cs-shot b{color:var(--walnut);font-weight:600;}
+.cs-final{margin-top:1.8rem;}
+.cs-final-row{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem;margin-top:1.2rem;}
+.cs-livecta{display:inline-block;margin-top:2rem;padding:.9rem 1.8rem;border:1px solid var(--walnut);
+  border-radius:2rem;color:var(--walnut);text-decoration:none;
+  font:500 .9rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;transition:.25s var(--ease);}
+.cs-livecta:hover{background:var(--walnut);color:var(--ivory);}
+
+/* 08 · Design System */
+.cs-sub{font:500 .78rem/1 var(--sans);letter-spacing:.22em;color:var(--stone);
+  margin:2.2rem 0 1rem;text-transform:uppercase;}
+.cs-swatches{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;}
+.cs-swatches li{font:500 .82rem/1.4 var(--sans);color:var(--espresso);}
+.cs-swatches span{display:block;height:4.5rem;border-radius:.6rem;background:var(--c);
+  border:1px solid var(--line);margin-bottom:.5rem;}
+.cs-swatches em{display:block;color:var(--ink-soft);font-style:normal;font-size:.72rem;letter-spacing:.06em;}
+.cs-type p{padding:1.1rem 1.3rem;border:1px solid var(--line);border-radius:.7rem;
+  background:var(--oat);margin-bottom:.8rem;font-size:1.5rem;}
+.cs-type__serif{font-family:var(--display);font-weight:500;}
+.cs-type__sans{font-family:var(--sans);font-weight:600;font-size:1.25rem;}
+.cs-type em{float:right;font-style:normal;font-size:.78rem;color:var(--ink-soft);
+  font-family:var(--sans);letter-spacing:.08em;}
+.cs-lead code{font:.9em var(--sans);color:var(--walnut);background:var(--oat);padding:.05em .35em;border-radius:.25em;}
+.cs-sec h2 small{display:block;font:500 .82rem/1 var(--sans);color:var(--ink-soft);
+  margin-top:.6rem;letter-spacing:.1em;text-transform:uppercase;}
+
+/* 10 · Before / After */
+.cs-ba{display:grid;gap:1rem;margin-top:2rem;}
+.cs-ba__row{display:grid;grid-template-columns:10rem 1fr 1fr;gap:1rem;align-items:stretch;}
+.cs-ba__tag{font:600 .84rem/1.4 var(--sans);letter-spacing:.02em;color:var(--walnut);align-self:center;}
+.cs-ba__b,.cs-ba__a{padding:1rem 1.2rem;border-radius:.7rem;font-size:.94rem;font-weight:400;}
+.cs-ba__b{background:var(--sand);border:1px solid var(--line);color:var(--espresso);}
+.cs-ba__a{background:var(--glass);border:1px solid var(--glass-line);color:var(--espresso);}
+.cs-ba__b b{color:var(--ink-soft);} .cs-ba__a b{color:var(--walnut);}
+.cs-ba__b b,.cs-ba__a b{display:block;font:600 .72rem/1 var(--sans);letter-spacing:.14em;margin-bottom:.5rem;text-transform:uppercase;}
+
+/* 11 · Expected Outcome */
+.cs-out{list-style:none;display:grid;gap:.9rem;margin-top:1.8rem;}
+.cs-out li{position:relative;padding:1rem 1.2rem 1rem 3rem;border:1px solid var(--line);
+  border-radius:.7rem;background:var(--oat);color:var(--espresso);font-weight:400;}
+.cs-out li::before{content:"✓";position:absolute;left:1.1rem;top:1rem;color:var(--walnut);font-weight:700;}
+.cs-out b{color:var(--espresso);font-weight:600;}
+
+/* 12 · Reflection */
+.cs-reflect__body{max-width:64ch;display:grid;gap:1.1rem;color:var(--espresso);font-weight:400;margin-top:1.6rem;}
+.cs-reflect__body b{color:var(--espresso);font-weight:600;}
+.cs-reflect__body em{color:var(--walnut);font-style:italic;}
+.cs-reflect__body code{font:.9em var(--sans);color:var(--walnut);background:var(--oat);padding:.05em .35em;border-radius:.25em;}
+.cs-reflect__cta{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;margin-top:2.6rem;
+  padding-top:2rem;border-top:1px solid var(--line);}
+.cs-reflect__cta a:first-child{color:var(--espresso);text-decoration:none;
+  font:500 .9rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;}
+.cs-reflect__cta a:first-child:hover{color:var(--walnut);}
+.cs-reflect__cta .cs-livecta{margin-top:0;}
