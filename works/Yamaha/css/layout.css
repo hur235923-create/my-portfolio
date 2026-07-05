@@ -1,0 +1,42 @@
+
+/* ---------- 떠다니는 사운드 링 (3D 캔버스) ---------- */
+#ring {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  z-index: 0; pointer-events: none; display: block;
+}
+
+/* 콘텐츠는 캔버스 위에 — 단, 배경은 비워 링이 여백으로 비쳐 보이게 */
+.top, main, .hero, .foot, .ruler { position: relative; z-index: 2; }
+
+/* ---------- 상단 미니 브랜드 ---------- */
+.top {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: clamp(1.2rem, 2.5vw, 2rem) var(--pad);
+  mix-blend-mode: normal;
+}
+.top__brand { font-weight: 500; letter-spacing: 0.42em; font-size: 1.05rem; }
+.top__tag { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+.top__tag span { color: var(--violet); }
+
+/* ---------- 우측 주파수 눈금 = 내비/진행 ---------- */
+.ruler {
+  position: fixed; right: clamp(1rem, 2.6vw, 2.4rem); top: 50%; transform: translateY(-50%);
+  z-index: 50; display: flex; align-items: center; gap: 1rem;
+}
+.ruler__line { position: relative; width: 1px; height: 38vh; background: var(--line); overflow: hidden; }
+.ruler__line i { position: absolute; inset: 0; background: var(--violet); transform: scaleY(0); transform-origin: top; }
+.ruler__list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+.ruler__list a {
+  display: flex; align-items: center; gap: 0.55rem;
+  font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+  transition: color 0.3s var(--ease);
+}
+.ruler__list a::before {
+  content: attr(data-i); font-variant-numeric: tabular-nums; color: var(--line);
+  transition: color 0.3s var(--ease);
+}
+.ruler__list a span { opacity: 0; transform: translateX(6px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); }
+.ruler__list a:hover span, .ruler__list a.is-active span { opacity: 1; transform: none; }
+.ruler__list a:hover, .ruler__list a.is-active { color: var(--ink); }
+.ruler__list a.is-active::before { color: var(--violet); }

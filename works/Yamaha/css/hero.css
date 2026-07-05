@@ -1,0 +1,20 @@
+
+/* ============================================================
+   HERO — 비대칭, 좌측 정렬 (중앙정렬 히어로 탈피)
+   ============================================================ */
+.hero {
+  min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+  padding: 0 var(--pad);
+  max-width: 78%;
+}
+.hero__eyebrow { font-size: clamp(0.8rem, 1.3vw, 1rem); letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: clamp(1rem, 2vw, 1.8rem); }
+.hero__title { font-weight: 200; font-size: clamp(4rem, 17vw, 17rem); letter-spacing: -0.05em; }
+.hero__title .ln { display: block; overflow: hidden; }
+.hero__title .ln > span { display: inline-block; }
+.hero__title .ln--indent { padding-left: clamp(2rem, 14vw, 14rem); }
+.hero__title .ln--indent > span { color: var(--violet); font-weight: 300; }
+.hero__note { margin-top: clamp(1.5rem, 3vw, 2.6rem); max-width: 42ch; font-size: clamp(1rem, 1.4vw, 1.2rem); color: var(--ink-soft); }
+.hero__meta { margin-top: clamp(2rem, 4vw, 3.4rem); display: flex; align-items: center; gap: 1rem; font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+.hero__bar { position: relative; width: 84px; height: 1px; background: var(--line); overflow: hidden; }
+.hero__bar::after { content: ""; position: absolute; inset: 0; background: var(--violet); transform-origin: left; animation: slide 2.4s var(--ease) infinite; }
+@keyframes slide { 0% { transform: scaleX(0); } 50% { transform: scaleX(1); } 50.01% { transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }

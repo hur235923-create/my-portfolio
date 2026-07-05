@@ -1,0 +1,45 @@
+
+/* ============================================================
+   리빌 게이팅 — JS-off 가독 (translate 히든은 GSAP 소유)
+   ============================================================ */
+.js .hero__title .ln > span { opacity: 0; }
+.js .plate img { opacity: 0; }
+.js :is(.reson__text, .inst__caption, .figure, .quote, .legacy .huge, .legacy__cols > div, .voices__head) {
+  opacity: 0; transform: translateY(30px);
+}
+
+/* ============================================================
+   반응형
+   ============================================================ */
+@media (max-width: 900px) {
+  .ruler { display: none; }
+  .hero { max-width: 100%; }
+  .reson__grid { grid-template-columns: 1fr; }
+  .plate--tall { aspect-ratio: 4 / 3; max-height: 70vh; }
+  .inst__item, .inst__item[data-side="left"], .inst__item[data-side="right"] { grid-template-columns: 1fr; gap: 0; }
+  .inst__item[data-side="right"] .plate { order: 0; }
+  .inst__item[data-side="right"] .inst__caption { order: 0; text-align: left; }
+  .inst__caption, .inst__item[data-side="left"] .inst__caption, .inst__item[data-side="right"] .inst__caption { margin: -2.5rem 1rem 0; }
+  .inst__item[data-side="right"] .inst__caption p { margin-left: 0; }
+  .figures { grid-template-columns: 1fr; gap: 1.6rem; text-align: left; }
+  .quotes { grid-template-columns: 1fr; }
+  .quote:nth-child(2) { transform: none; }
+}
+
+@media (max-width: 520px) {
+  .top__tag { display: none; }
+  .hero__title .ln--indent { padding-left: 2rem; }
+}
+
+/* ============================================================
+   reduced-motion — 모든 리빌 즉시 가시
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__title .ln > span, .js .plate img,
+  .js :is(.reson__text, .inst__caption, .figure, .quote, .legacy .huge, .legacy__cols > div, .voices__head) {
+    opacity: 1 !important; transform: none !important;
+  }
+  .hero__bar::after { animation: none; }
+  #ring { display: none; }
+  * { scroll-behavior: auto !important; }
+}
