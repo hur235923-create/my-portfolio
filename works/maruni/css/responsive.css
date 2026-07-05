@@ -1,0 +1,34 @@
+
+/* ============================================================
+   반응형
+   ============================================================ */
+@media (max-width: 920px) {
+  .nav__menu { display: none; }
+  .manifesto__cols { grid-template-columns: 1fr; gap: 1.4rem; }
+  .piece, .piece[data-side="right"] { grid-template-columns: 1fr; gap: 1.8rem; }
+  .piece[data-side="right"] .piece__media { order: 0; }
+  .piece[data-side="right"] .piece__info { order: 0; }
+  .piece__media, .piece[data-side="left"] .piece__media { aspect-ratio: 4 / 3; }
+  .craft { grid-template-columns: 1fr; gap: 2rem; }
+  .craft__media { aspect-ratio: 3 / 2; }
+  .designers__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .designers__portrait { max-height: 78vh; max-width: 520px; }
+}
+
+@media (max-width: 540px) {
+  .nav__est { display: none; }
+  .hero { align-items: flex-end; }
+}
+
+/* ============================================================
+   reduced-motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .js .reveal-img img, .js .hero__title .line > span, .js .statement .reveal-line,
+  .js .st-target, .st-word {
+    opacity: 1 !important; transform: none !important;
+  }
+  .hero__scroll i::after { animation: none; }
+  .piece__media img { transition: none; }
+  * { scroll-behavior: auto !important; }
+}

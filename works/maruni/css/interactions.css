@@ -1,0 +1,54 @@
+
+/* ============================================================
+   리빌 게이팅 — JS-off 가독 (translate 히든은 GSAP 소유)
+   ============================================================ */
+.js .reveal { opacity: 0; transform: translateY(26px); }
+.js .reveal-img img { transform: scale(1.12); }
+.js .reveal-img { overflow: hidden; }
+.js .hero__title .line > span,
+.js .statement .reveal-line { opacity: 0; }
+/* SplitType 헤딩: 분할 전까지 숨김 (JS가 분할 후 opacity 1 부여) */
+.js .st-target { opacity: 0; }
+
+/* ============================================================
+   SplitType 타이포 리빌 — 라인 마스크 + 단어 스태거
+   ============================================================ */
+.st-line { overflow: hidden; padding-bottom: 0.08em; }
+.st-word { display: inline-block; will-change: transform; }
+
+/* ============================================================
+   라이트박스 — GSAP Flip 공유요소 전환 (웜 뮤지엄 톤)
+   ============================================================ */
+.piece__media img { cursor: zoom-in; }
+.lb {
+  position: fixed; inset: 0; z-index: 400;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(1rem, 2vw, 1.6rem);
+  padding: clamp(1.5rem, 5vw, 5rem);
+  background: rgba(28, 23, 16, 0.94);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.5s var(--ease), visibility 0.5s var(--ease);
+  cursor: zoom-out;
+}
+.lb.is-open { opacity: 1; visibility: visible; }
+.lb__stage { display: flex; align-items: center; justify-content: center; max-width: min(90vw, 1100px); max-height: 80vh; }
+.lb__stage img {
+  max-width: min(90vw, 1100px); max-height: 80vh; width: auto; height: auto;
+  object-fit: contain; cursor: default;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+}
+.lb__cap {
+  font-family: var(--sans); font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.78); opacity: 0; transform: translateY(8px);
+  transition: opacity 0.5s var(--ease) 0.15s, transform 0.5s var(--ease) 0.15s;
+}
+.lb.is-open .lb__cap { opacity: 1; transform: none; }
+.lb__close {
+  position: absolute; top: clamp(1rem, 3vw, 2.2rem); right: clamp(1rem, 3vw, 2.2rem);
+  background: none; border: 1px solid rgba(244, 239, 230, 0.4); color: var(--ivory);
+  font-family: var(--sans); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.6rem 1.1rem; border-radius: 100px; cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.lb__close:hover { background: var(--ivory); color: var(--espresso); border-color: var(--ivory); }

@@ -1,0 +1,11 @@
+
+/* ============================================================
+   타이포 / 공통
+   ============================================================ */
+.eyebrow { font-size: 0.78rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--stone); display: flex; align-items: center; gap: 0.7rem; margin-bottom: clamp(1.6rem, 3vw, 2.6rem); }
+.eyebrow__no { color: var(--walnut); }
+.sec-head { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad); margin-bottom: clamp(3rem, 7vw, 6rem); }
+.sec-head--wide { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.sec-title { font-family: var(--display); font-weight: 400; font-size: clamp(2.6rem, 6.5vw, 6rem); line-height: 1; letter-spacing: -0.01em; }
+.sec-title em { font-style: italic; }
+.sec-desc { margin-top: 1.4rem; max-width: 40ch; color: var(--ink-soft); font-size: 1rem; line-height: 1.7; }

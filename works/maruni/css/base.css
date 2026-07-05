@@ -1,0 +1,64 @@
+/* ============================================================
+   MARUNI — Minimal in form, deep in soul
+   Warm museum editorial · quiet luxury · 리서치 기반 프리미엄 리디자인
+   ============================================================ */
+
+:root {
+  --ivory: #f4efe6;
+  --oat: #ece3d4;
+  --sand: #e2d6c2;
+  --espresso: #221c14;
+  --ink-soft: #5b5346;
+  --stone: #938875;
+  --walnut: #6f5236;
+  --line: rgba(34, 28, 20, 0.16);
+  --line-soft: rgba(34, 28, 20, 0.09);
+
+  --display: "Cormorant Garamond", "Noto Serif KR", Georgia, serif;
+  --serif: "Noto Serif KR", "Cormorant Garamond", serif;
+  --sans: "Hanken Grotesk", "Noto Sans KR", system-ui, sans-serif;
+
+  --maxw: 1380px;
+  --pad: clamp(1.4rem, 5.5vw, 7rem);
+  --sec-y: clamp(6rem, 15vh, 15rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:where(body, h1, h2, h3, h4, p, li, a, span, blockquote, figcaption, dt, dd, label, button, input) {
+  word-break: keep-all; overflow-wrap: break-word;
+}
+
+html { background: var(--ivory); -webkit-text-size-adjust: 100%; }
+
+body {
+  color: var(--espresso);
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.78;
+  font-size: clamp(1rem, 1.05vw, 1.12rem);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; color: var(--walnut); }
+p { text-wrap: pretty; }
+
+::selection { background: var(--walnut); color: var(--ivory); }
+:focus-visible { outline: 2px solid var(--walnut); outline-offset: 4px; }
+
+.visually { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; }
+
+.skip { position: fixed; top: -120px; left: 1rem; z-index: 300; background: var(--espresso); color: var(--ivory); padding: 0.7rem 1.1rem; border-radius: 4px; transition: top 0.25s var(--ease); font-family: var(--sans); font-size: 0.85rem; }
+.skip:focus { top: 1rem; }
+
+/* 라벨/소제목용 산세리프 */
+.eyebrow, .nav__menu a, .nav__est, .piece__no, .piece__type, .piece__by,
+.sec-desc, .hero__eyebrow, .hero__scroll, .craft__facts dt, .foot__sns a,
+.foot__addr span, .foot__copy, .foot__news, .nav__brand, .foot__brand {
+  font-family: var(--sans);
+}
