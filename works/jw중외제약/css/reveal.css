@@ -1,0 +1,7 @@
+
+/* ============================================================
+   리빌 게이팅 (.js — JS-off 가독)
+   ============================================================ */
+.js .reveal { opacity: 0; transform: translateY(24px); }
+.js .st { opacity: 0; }
+.js .hero__title .l > span { will-change: transform; }

@@ -1,0 +1,14 @@
+
+/* HUD */
+.cs-hud{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;padding:.9rem clamp(1rem,4vw,2.4rem);
+  background:linear-gradient(var(--abyss),rgba(4,19,30,.75));
+  border-bottom:1px solid var(--line-d);}
+.cs-hud a{color:var(--foam);text-decoration:none;font:500 .8rem/1 var(--mono);letter-spacing:.04em;}
+.cs-hud a:hover{color:var(--cyan);}
+.cs-hud__center{display:flex;flex-direction:column;align-items:center;gap:.25rem;text-align:center;}
+.cs-hud__title{font:500 .72rem/1 var(--mono);letter-spacing:.14em;color:var(--mute);}
+.cs-hud__counter{font:500 .8rem/1 var(--mono);color:var(--cyan);}
+.cs-hud__gauge{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--line-d);}
+.cs-hud__gauge-fill{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;
+  background:linear-gradient(90deg,var(--cyan),var(--blue));}

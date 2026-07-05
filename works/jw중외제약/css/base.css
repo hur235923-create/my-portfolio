@@ -1,0 +1,65 @@
+/* ============================================================
+   JW중외제약 — 생명이 흐르게 하다 / SPARK: 고요의 심해
+   세로 타이포 강 · 어긋난 그리드 · 다층 패럴랙스 · 실사 + 듀오톤
+   PREDICTABILITY ≤ 3 · Noto Sans KR(≤600) + JetBrains Mono
+   ============================================================ */
+
+:root {
+  --abyss:  #04131e;
+  --abyss2: #07223a;
+  --deep:   #00407f;
+  --blue:   #0075c5;
+  --light:  #00a9e5;
+  --cyan:   #5fe0ef;
+  --vital:  #f2b24a;   /* 생명의 빛 — 웜 앰버, 절제 사용 */
+  --foam:   #eef5fb;
+  --paper:  #f4f8fc;
+  --ink:    #0c1820;
+  --ink-s:  #46596a;
+  --mute:   #8093a2;
+  --line-d: rgba(234, 244, 251, 0.14);
+  --line-l: rgba(12, 24, 32, 0.12);
+
+  --sans: "Noto Sans KR", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --maxw: 1440px;
+  --pad: clamp(1.4rem, 5vw, 6.5rem);
+  --rail: clamp(2.2rem, 5vw, 4.5rem);   /* 좌측 세로 강 폭 */
+  --sec-y: clamp(7rem, 16vh, 16rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:where(body,h1,h2,h3,h4,p,li,a,span,dt,dd,em,b,figcaption) { word-break: keep-all; overflow-wrap: break-word; }
+
+html { background: var(--abyss); -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  font-family: var(--sans); font-weight: 400; color: var(--foam);
+  background: var(--abyss); line-height: 1.72;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+h1, h2, h3 { font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; text-wrap: balance; }
+p, li { text-wrap: pretty; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: auto; }
+em { font-style: normal; color: var(--vital); }
+::selection { background: var(--vital); color: var(--abyss); }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+
+.skip { position: fixed; top: -120px; left: 1rem; z-index: 800; background: var(--vital); color: var(--abyss); padding: 0.7rem 1.1rem; border-radius: 6px; transition: top 0.25s var(--ease); font-weight: 500; }
+.skip:focus { top: 1rem; }
+
+/* 세로 라벨(섹션 표식) — vertical-rl */
+.vlabel {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--blue); white-space: nowrap;
+}
+.vlabel--light { color: var(--cyan); }

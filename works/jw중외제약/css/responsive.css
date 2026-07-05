@@ -1,0 +1,34 @@
+
+/* ============================================================
+   반응형
+   ============================================================ */
+@media (max-width: 960px) {
+  .rnd { grid-template-columns: 1fr; }
+  .rnd__media { aspect-ratio: 16 / 10; max-height: 60vh; }
+  .glance__grid { grid-template-columns: repeat(6, 1fr); }
+  .glance__media { grid-column: 1 / 7; grid-row: auto; aspect-ratio: 16 / 9; }
+  .metric { transform: none !important; }
+  .metric--a, .metric--c { grid-column: 1 / 4; }
+  .metric--b, .metric--d { grid-column: 4 / 7; }
+}
+@media (max-width: 760px) {
+  :root { --rail: 0px; }
+  .nav { padding-left: var(--pad); }
+  .nav__menu { display: none; }
+  .glance > .vlabel, .heritage > .vlabel, .products > .vlabel, .sustain > .vlabel { display: none; }
+  .flow, .flow--alt { grid-template-columns: 1fr; transform: none; direction: ltr; }
+  .drop--media { grid-template-columns: clamp(3rem, 10vw, 5rem) 1fr; }
+  .drop--media .drop__media { grid-column: 2; margin-top: 1.4rem; }
+  .drop--media .drop__body { grid-column: 2; }
+}
+
+/* ============================================================
+   reduced-motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .js .st { opacity: 1 !important; transform: none !important; }
+  .loader { display: none; }
+  .hero__scroll i::after { animation: none; }
+  .metric { transform: none !important; }
+  * { scroll-behavior: auto !important; }
+}

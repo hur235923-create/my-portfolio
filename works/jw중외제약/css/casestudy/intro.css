@@ -1,0 +1,17 @@
+
+/* 01 · Project Intro */
+.cs-intro{position:relative;min-height:100vh;display:flex;align-items:center;
+  max-width:none;padding-inline:var(--pad);overflow:hidden;}
+.cs-intro__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.5;filter:saturate(1.1);}
+.cs-intro::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,19,30,.4),var(--abyss));}
+.cs-intro__inner{position:relative;z-index:2;max-width:var(--maxw);margin-inline:auto;width:100%;}
+.cs-intro__title{font-weight:600;font-size:clamp(2.4rem,1.5rem + 5vw,5rem);line-height:1.08;margin:.4rem 0 1.4rem;}
+.cs-intro__title span{display:block;font:500 clamp(.85rem,1.4vw,1.1rem)/1 var(--mono);
+  letter-spacing:.28em;color:var(--cyan);margin-top:1rem;}
+.cs-intro__lead{max-width:44ch;color:#d6e6f2;font-size:clamp(1.05rem,1vw + .8rem,1.3rem);}
+.cs-intro__meta{display:flex;gap:2.4rem;margin-top:2.4rem;flex-wrap:wrap;}
+.cs-intro__meta dt{font:500 .72rem/1 var(--mono);letter-spacing:.12em;color:var(--mute);}
+.cs-intro__meta dd{font-size:.95rem;margin-top:.35rem;}
+.cs-intro__hint{margin-top:3rem;font:500 .78rem/1 var(--mono);letter-spacing:.14em;color:var(--cyan);}

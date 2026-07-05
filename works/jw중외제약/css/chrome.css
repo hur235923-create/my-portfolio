@@ -1,0 +1,43 @@
+
+/* ============================================================
+   프리로더
+   ============================================================ */
+.loader { position: fixed; inset: 0; z-index: 1000; background: var(--abyss); display: flex; align-items: center; justify-content: center; gap: 1.2rem; }
+.loader__drop { width: 14px; height: 14px; border-radius: 50% 50% 50% 0; transform: rotate(45deg); background: linear-gradient(160deg, var(--cyan), var(--blue)); box-shadow: 0 0 36px rgba(95,224,239,0.6); }
+.loader__num { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.2em; color: var(--cyan); }
+
+/* ============================================================
+   세로 타이포 강(江) — DARING_MOVE
+   ============================================================ */
+.river {
+  position: fixed; left: 0; top: 0; bottom: 0; width: var(--rail); z-index: 90;
+  display: flex; align-items: flex-start; justify-content: center; padding-top: clamp(5rem, 12vh, 9rem);
+  pointer-events: none; mix-blend-mode: difference;
+}
+.river__text {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.36em; text-transform: uppercase;
+  color: #fff; white-space: nowrap;
+}
+.river__gauge { position: absolute; left: 50%; bottom: clamp(2rem,6vh,4rem); top: clamp(2rem,6vh,4rem); width: 2px; transform: translateX(-50%); background: rgba(255,255,255,0.18); }
+.river__gauge i { position: absolute; inset: 0; transform-origin: top; transform: scaleY(0); background: linear-gradient(var(--cyan), var(--blue)); }
+@media (max-width: 760px) { .river { display: none; } }
+
+/* ============================================================
+   헤더
+   ============================================================ */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 100; color: var(--foam);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(1rem, 2vw, 1.6rem) var(--pad) clamp(1rem, 2vw, 1.6rem) calc(var(--rail) + var(--pad) * 0.4);
+  transition: background 0.5s var(--ease), color 0.5s var(--ease), padding 0.4s var(--ease), border-color 0.5s;
+  border-bottom: 1px solid transparent;
+}
+.nav.is-solid { background: rgba(4,19,30,0.7); border-bottom-color: var(--line-d); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.nav__brand { font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; }
+.nav__brand b { font-weight: 400; opacity: 0.66; }
+.nav__menu { display: flex; gap: clamp(1rem, 2.4vw, 2.4rem); }
+.nav__menu a { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.06em; position: relative; padding: 0.3rem 0; }
+.nav__menu a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: var(--cyan); transform: scaleX(0); transform-origin: right; transition: transform 0.4s var(--ease); }
+.nav__menu a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav__since { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em; color: var(--cyan); }

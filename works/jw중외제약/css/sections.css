@@ -1,0 +1,105 @@
+
+/* ============================================================
+   02 GLANCE — 밝은 섹션, 어긋난 그리드
+   ============================================================ */
+.glance { position: relative; background: var(--foam); color: var(--ink); padding: var(--sec-y) var(--pad) var(--sec-y) calc(var(--rail) + var(--pad)); }
+.glance > .vlabel { position: absolute; top: var(--sec-y); left: var(--rail); }
+.glance__title { font-size: clamp(2rem, 5.5vw, 4.6rem); margin: 0 0 clamp(3rem, 7vw, 6rem); max-width: 16ch; }
+.glance__title em { color: var(--blue); }
+.glance__grid {
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(1.4rem, 3vw, 2.6rem);
+  align-items: start; max-width: var(--maxw);
+}
+.glance__media { grid-column: 1 / 6; grid-row: 1 / 3; overflow: hidden; border-radius: 2px; aspect-ratio: 4 / 5; }
+.glance__media img { height: 100%; object-fit: cover; will-change: transform; }
+.metric { border-top: 2px solid var(--blue); padding-top: 1rem; }
+.metric dt { font-family: var(--mono); font-weight: 300; line-height: 0.9; letter-spacing: -0.03em; color: var(--deep); display: flex; align-items: baseline; gap: 0.2rem; }
+.metric__n { font-size: clamp(2.6rem, 6vw, 5.2rem); }
+.metric dt b { font-weight: 400; font-size: clamp(1rem, 2vw, 1.6rem); color: var(--blue); }
+.metric__mono { font-family: var(--sans); font-weight: 600; font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -0.02em; color: var(--vital); }
+.metric dd { margin-top: 0.9rem; color: var(--ink-s); font-size: 0.95rem; max-width: 28ch; }
+/* 어긋난 배치 */
+.metric--a { grid-column: 7 / 10; }
+.metric--b { grid-column: 10 / 13; transform: translateY(clamp(1.5rem, 5vw, 4rem)); }
+.metric--c { grid-column: 7 / 10; transform: translateY(clamp(1rem, 3vw, 2.5rem)); }
+.metric--d { grid-column: 10 / 13; transform: translateY(clamp(2.5rem, 8vw, 6.5rem)); }
+
+/* ============================================================
+   03 HERITAGE — 세로 연도 스트림
+   ============================================================ */
+.heritage { position: relative; background: var(--abyss); padding: var(--sec-y) var(--pad) var(--sec-y) calc(var(--rail) + var(--pad)); overflow: hidden; }
+.heritage > .vlabel { position: absolute; top: var(--sec-y); left: var(--rail); color: var(--cyan); }
+.heritage__title { font-size: clamp(2.2rem, 6vw, 5rem); margin-bottom: clamp(3rem, 8vw, 6rem); }
+.stream { list-style: none; max-width: var(--maxw); display: flex; flex-direction: column; gap: clamp(3rem, 8vh, 7rem); }
+.drop { display: grid; grid-template-columns: clamp(3.5rem, 8vw, 7rem) 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; position: relative; }
+.drop__year { writing-mode: vertical-rl; text-orientation: mixed; font-family: var(--mono); font-weight: 300; font-size: clamp(1.6rem, 3.4vw, 2.8rem); letter-spacing: 0.1em; color: var(--blue); align-self: stretch; }
+.drop__body h3 { font-size: clamp(1.3rem, 2.8vw, 2.2rem); margin-bottom: 0.9rem; }
+.drop__body p { color: rgba(234,244,251,0.72); max-width: 46ch; }
+.drop--media { grid-template-columns: clamp(3.5rem, 8vw, 7rem) minmax(0, 1.4fr) minmax(0, 1fr); align-items: center; }
+.drop__media { overflow: hidden; border-radius: 2px; aspect-ratio: 4 / 5; }
+.drop--media .drop__body { grid-column: 3; }
+.drop--media .drop__year { grid-column: 1; }
+.drop--media .drop__media { grid-column: 2; }
+.drop__media img { height: 100%; object-fit: cover; will-change: transform; }
+
+/* ============================================================
+   04 R&D — 데이터의 흐름
+   ============================================================ */
+.rnd { position: relative; background: var(--abyss2); padding: var(--sec-y) var(--pad) var(--sec-y) calc(var(--rail) + var(--pad)); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+.rnd__field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.85; pointer-events: none; }
+.rnd__media { position: relative; z-index: 1; overflow: hidden; border-radius: 2px; aspect-ratio: 5 / 6; }
+.rnd__media img { height: 100%; object-fit: cover; will-change: transform; }
+.rnd__copy { position: relative; z-index: 2; }
+.rnd__copy .vlabel { position: static; margin-bottom: 1.4rem; }
+.rnd__title { font-size: clamp(2rem, 5.5vw, 4.4rem); margin-bottom: 1.6rem; }
+.rnd__title em { color: var(--cyan); }
+.rnd__lede { color: rgba(234,244,251,0.82); max-width: 50ch; }
+.rnd__lede em { color: var(--cyan); }
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+.tags li { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.04em; color: var(--cyan); border: 1px solid var(--line-d); border-radius: 100px; padding: 0.5rem 1rem; }
+
+/* ============================================================
+   05 PRODUCTS — 겹치는 어긋난 흐름 블록
+   ============================================================ */
+.products { position: relative; background: var(--paper); color: var(--ink); padding: var(--sec-y) var(--pad) var(--sec-y) calc(var(--rail) + var(--pad)); overflow: hidden; }
+.products > .vlabel { position: absolute; top: var(--sec-y); left: var(--rail); }
+.products__title { font-size: clamp(2.2rem, 6vw, 5rem); margin-bottom: clamp(3rem, 8vw, 6rem); }
+.products__title em { color: var(--blue); }
+.flowset { display: flex; flex-direction: column; gap: clamp(3rem, 8vh, 7rem); max-width: var(--maxw); }
+.flow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.flow--alt { direction: rtl; }
+.flow--alt > * { direction: ltr; }
+.flow__media { overflow: hidden; border-radius: 2px; aspect-ratio: 16 / 11; }
+.flow__media img { height: 100%; object-fit: cover; will-change: transform; }
+.flow__no { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-s); }
+.flow__txt h3 { font-size: clamp(2.2rem, 6vw, 4.6rem); font-weight: 600; line-height: 0.95; margin: 0.6rem 0 0; letter-spacing: -0.03em; }
+.flow__tag { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--blue); margin-top: 0.8rem; }
+.flow__desc { margin-top: 1.4rem; color: var(--ink-s); max-width: 34ch; }
+/* 겹침: 짝수 블록을 살짝 끌어올려 어긋나게 */
+.flow--alt { transform: translateY(clamp(-1rem, -3vw, -3rem)); }
+
+/* ============================================================
+   06 SUSTAINABILITY — 철학, 심해 + 패럴랙스
+   ============================================================ */
+.sustain { position: relative; background: var(--abyss); padding: clamp(9rem, 22vh, 20rem) var(--pad) clamp(9rem, 22vh, 20rem) calc(var(--rail) + var(--pad)); overflow: hidden; }
+.sustain__media { position: absolute; inset: -12% 0; z-index: 0; background-size: cover; background-position: center; opacity: 0.28; will-change: transform; }
+.sustain::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, var(--abyss), rgba(4,19,30,0.5) 50%, var(--abyss)); }
+.sustain > .vlabel { position: absolute; top: clamp(9rem,22vh,20rem); left: var(--rail); z-index: 2; }
+.sustain__quote { position: relative; z-index: 2; font-size: clamp(2rem, 6.5vw, 5.4rem); font-weight: 500; line-height: 1.12; max-width: 18ch; }
+.sustain__quote em { color: var(--cyan); }
+.sustain__sign { position: relative; z-index: 2; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.16em; color: var(--mute); margin-top: clamp(2rem, 5vw, 3.5rem); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot { background: #03101a; padding: clamp(5rem, 12vh, 10rem) var(--pad) 2.5rem calc(var(--rail) + var(--pad)); }
+.foot__cta { max-width: var(--maxw); margin: 0 auto clamp(4rem, 9vw, 7rem); }
+.foot__kicker { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 1.2rem; }
+.foot__make { display: inline-block; font-size: clamp(2.6rem, 9vw, 7rem); font-weight: 600; line-height: 0.96; letter-spacing: -0.03em; transition: color 0.4s var(--ease); }
+.foot__make:hover { color: var(--vital); }
+.foot__row { max-width: var(--maxw); margin-inline: auto; padding-top: 2.2rem; border-top: 1px solid var(--line-d); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.4rem; }
+.foot__brand { font-weight: 600; font-size: 1.25rem; }
+.foot__links { display: flex; gap: clamp(1rem, 3vw, 2.2rem); }
+.foot__links a { font-family: var(--mono); font-size: 0.76rem; color: rgba(234,244,251,0.7); transition: color 0.3s; }
+.foot__links a:hover { color: var(--cyan); }
+.foot__copy { font-family: var(--mono); font-size: 0.68rem; color: var(--mute); width: 100%; }

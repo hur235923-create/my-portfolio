@@ -1,0 +1,28 @@
+
+/* ============================================================
+   01 HERO — 비대칭 + 다층 패럴랙스
+   ============================================================ */
+.hero { position: relative; min-height: 100svh; overflow: hidden; background: var(--abyss); display: grid; }
+.hero__layers { position: absolute; inset: 0; z-index: 0; }
+.hero__layer { position: absolute; inset: -12% -6%; will-change: transform; }
+.hero__layer--img { background-size: cover; background-position: center; }
+.hero__layer--veil { inset: 0; background:
+   linear-gradient(180deg, rgba(4,19,30,0.46) 0%, rgba(4,19,30,0.2) 30%, rgba(4,19,30,0.92) 100%),
+   radial-gradient(80% 60% at 78% 8%, rgba(95,224,239,0.16), transparent 60%); }
+.hero__layer--glow { inset: 0; background: radial-gradient(40% 30% at 22% 80%, rgba(242,178,74,0.14), transparent 70%); }
+
+.hero__mark {
+  position: absolute; z-index: 1; top: clamp(7rem, 16vh, 11rem); right: clamp(-1rem, 1vw, 2rem);
+  font-weight: 600; font-size: clamp(4rem, 18vw, 18rem); letter-spacing: -0.05em; line-height: 0.8;
+  color: rgba(234,244,251,0.05); will-change: transform; pointer-events: none;
+}
+.hero__copy { position: relative; z-index: 3; align-self: end; padding: 0 var(--pad) clamp(7rem, 18vh, 12rem) calc(var(--rail) + var(--pad)); }
+.hero__eyebrow { font-family: var(--mono); font-size: clamp(0.74rem, 1.1vw, 0.9rem); letter-spacing: 0.18em; color: var(--cyan); margin-bottom: clamp(1rem, 2.4vw, 1.8rem); }
+.hero__title { font-size: clamp(3rem, 11vw, 10.5rem); font-weight: 600; line-height: 0.96; letter-spacing: -0.04em; }
+.hero__title .l { display: block; overflow: hidden; padding-bottom: 0.05em; }
+.hero__title .l > span { display: block; }
+.hero__foot { position: absolute; z-index: 3; left: calc(var(--rail) + var(--pad)); bottom: clamp(2.4rem, 7vh, 4.5rem); font-size: clamp(0.95rem, 1.2vw, 1.15rem); color: rgba(234,244,251,0.78); max-width: 40ch; }
+.hero__scroll { position: absolute; z-index: 3; right: var(--pad); bottom: clamp(2.4rem, 7vh, 4.5rem); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.3em; color: rgba(234,244,251,0.7); }
+.hero__scroll i { width: 1px; height: 52px; background: rgba(234,244,251,0.3); position: relative; overflow: hidden; }
+.hero__scroll i::after { content: ""; position: absolute; inset: 0; background: var(--cyan); animation: drip 2.4s var(--ease) infinite; }
+@keyframes drip { 0% { transform: translateY(-100%); } 55%,100% { transform: translateY(100%); } }
