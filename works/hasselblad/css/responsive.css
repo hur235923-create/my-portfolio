@@ -1,0 +1,47 @@
+
+/* ============================================================
+   반응형
+   ============================================================ */
+@media (max-width: 1024px) {
+  .heritage__grid { grid-template-columns: 1fr 1fr; }
+  .heritage__fig--wide { grid-column: span 2; }
+  .heritage__fig--wide img { aspect-ratio: 16/7; }
+  .ambassadors { grid-template-columns: 1fr; }
+  .ambassadors__text { justify-self: start; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .nav__menu { display: none; }
+  .heritage__grid { grid-template-columns: 1fr; }
+  .heritage__fig--wide { grid-column: auto; }
+  .heritage__fig--tall img { aspect-ratio: 4/3; }
+  /* 가로 쇼케이스 → 세로 스택 (JS에서 핀 해제) */
+  .showcase { min-height: auto; display: block; }
+  .showcase__track { flex-direction: column; width: 100%; padding-bottom: 4rem; gap: 3rem; }
+  .card { flex: none; grid-template-columns: 1fr; gap: 1.2rem; }
+  .stories { grid-template-columns: 1fr; }
+  .story, .story--feature { grid-column: auto; }
+  .story--feature { grid-template-columns: 1fr; }
+  .ambassadors__media { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .ambassadors__fig { position: static; width: auto !important; height: auto !important; }
+  .ambassadors__fig img { aspect-ratio: 1; }
+  .gallery { grid-template-columns: 1fr; grid-auto-rows: 56vw; }
+  .gallery__item[data-span="2"] { grid-column: auto; }
+  .gallery__item figcaption { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   모션 최소화
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .js .reveal-img img, .js .hero__title .line > span, .js .hero__kicker span, .js .hero__sub { opacity: 1 !important; transform: none !important; }
+  .js .reveal-clip { opacity: 1 !important; clip-path: none !important; }
+  .hero__scroll-line { animation: none; }
+  .marquee__track { animation: none; }
+  .preloader { display: none; }
+  .showcase { min-height: auto; display: block; }
+  .showcase__track { flex-direction: column; width: 100%; }
+  .card { flex: none; grid-template-columns: 1fr; }
+  * { scroll-behavior: auto !important; }
+}

@@ -1,0 +1,95 @@
+
+/* ============================================================
+   시네마틱 프리로더
+   ============================================================ */
+.preloader {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--ink); color: var(--paper);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(1.6rem, 4vh, 2.8rem);
+}
+.preloader__inner {
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem; text-align: center;
+}
+.preloader__brand {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(1.6rem, 6vw, 3rem); letter-spacing: 0.24em;
+}
+.preloader__count {
+  font-family: var(--serif); color: var(--accent);
+  font-size: clamp(2.6rem, 12vw, 7rem); line-height: 1; font-weight: 500;
+}
+.preloader__count i { font-style: normal; }
+.preloader__bar { display: block; width: min(38vw, 280px); height: 1px; background: var(--line); overflow: hidden; }
+.preloader__bar i { display: block; height: 100%; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.preloader__status {
+  font-family: var(--sans); font-size: 0.64rem; letter-spacing: 0.34em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ============================================================
+   키네틱 마퀴
+   ============================================================ */
+.marquee {
+  background: var(--ink); overflow: hidden; padding: clamp(1.4rem, 4vh, 3rem) 0;
+  border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+}
+.marquee--alt { border-top: none; }
+.marquee__track {
+  display: flex; width: max-content; will-change: transform;
+  animation: marquee 26s linear infinite;
+}
+.marquee[data-state="alt"] { } /* reserved */
+.marquee--alt .marquee__track { animation-direction: reverse; animation-duration: 32s; }
+.marquee__track span {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: clamp(1.8rem, 6vw, 4.4rem); letter-spacing: 0.01em;
+  color: transparent; -webkit-text-stroke: 1px var(--line);
+  white-space: nowrap; padding-right: 0.3em;
+}
+.marquee--alt .marquee__track span { -webkit-text-stroke: 1px rgba(194,169,143,0.28); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ============================================================
+   커서 라벨 (VIEW / DRAG)
+   ============================================================ */
+.cursor__label {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 0.5rem; letter-spacing: 0.18em; color: #fff;
+  text-transform: uppercase; opacity: 0; transition: opacity 0.3s var(--ease);
+}
+.cursor.is-label .cursor__ring { width: 76px; height: 76px; background: rgba(255,255,255,0.06); }
+.cursor.is-label .cursor__label { opacity: 1; }
+.cursor.is-label .cursor__dot { opacity: 0; }
+
+/* ============================================================
+   라이트박스
+   ============================================================ */
+.lightbox {
+  position: fixed; inset: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(1.5rem, 5vw, 5rem);
+  background: color-mix(in oklab, var(--ink) 92%, transparent);
+  backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden; transition: opacity 0.5s var(--ease), visibility 0.5s;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox__stage {
+  max-width: min(92vw, 1400px); max-height: 86vh;
+  display: flex; flex-direction: column; align-items: center; gap: 0.9rem;
+  transform: scale(0.94); transition: transform 0.6s var(--ease);
+}
+.lightbox.is-open .lightbox__stage { transform: scale(1); }
+.lightbox__stage img {
+  max-width: 100%; max-height: 78vh; width: auto; height: auto; object-fit: contain;
+  border-radius: 2px; box-shadow: 0 40px 90px rgba(0,0,0,0.6);
+}
+.lightbox__stage figcaption { font-size: 0.74rem; letter-spacing: 0.12em; color: var(--muted); }
+.lightbox__close {
+  position: absolute; top: clamp(1rem, 3vw, 2.4rem); right: clamp(1rem, 3vw, 2.4rem);
+  width: 48px; height: 48px; border: 1px solid var(--line); border-radius: 50%;
+  background: transparent; color: var(--paper); font-size: 1.6rem; line-height: 1;
+  cursor: pointer; transition: background 0.3s, border-color 0.3s;
+}
+.lightbox__close:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.gallery__item { cursor: pointer; }

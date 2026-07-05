@@ -1,0 +1,77 @@
+/* ============================================================
+   HASSELBLAD — 2026 Premium Interactive Redesign
+   Brand identity 유지: dark luxury · Playfair · "Legacy / Light"
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  --ink:      #0b0b0c;
+  --graphite: #141519;
+  --panel:    #1b1c21;
+  --paper:    #f2f1ec;
+  --muted:    #9a9ca3;
+  --line:     rgba(242, 241, 236, 0.14);
+  --line-soft:rgba(242, 241, 236, 0.07);
+  --accent:   #c2a98f;            /* 절제된 샴페인 메탈 */
+
+  --serif: "Playfair Display", "Noto Sans KR", serif;
+  --sans:  "Noto Sans KR", system-ui, sans-serif;
+  --script:"Italianno", cursive;
+
+  --pad: clamp(1.4rem, 5vw, 6.5rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --maxw: 1600px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  font-family: var(--sans);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 300;
+  line-height: 1.7;
+  font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.05rem);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+:where(h1,h2,h3,h4,p,li,a,span,blockquote,figcaption,dt,dd) {
+  word-break: keep-all; overflow-wrap: break-word;
+}
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.05; text-wrap: balance; letter-spacing: -0.01em; }
+p { text-wrap: pretty; }
+img { display: block; width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; color: var(--accent); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.skip-link {
+  position: fixed; top: -200%; left: 1rem; z-index: 300;
+  background: var(--paper); color: var(--ink); padding: 0.6rem 1rem; border-radius: 4px;
+}
+.skip-link:focus { top: 1rem; }
+
+/* 공용 타이포 */
+.eyebrow {
+  font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem;
+}
+.lede { font-size: clamp(1.05rem, 1rem + 0.6vw, 1.5rem); color: var(--paper); font-weight: 400; line-height: 1.5; }
+.body { color: var(--muted); max-width: 52ch; }
+
+.link-more {
+  display: inline-flex; align-items: center; gap: 0.7rem; margin-top: 1.8rem;
+  font-family: var(--sans); font-size: 0.74rem; letter-spacing: 0.22em; color: var(--paper);
+}
+.link-more span {
+  width: 2.4rem; height: 1px; background: var(--paper); display: inline-block;
+  transform-origin: left; transition: transform 0.5s var(--ease), background 0.4s;
+}
+.link-more:hover span { transform: scaleX(1.5); background: var(--accent); }

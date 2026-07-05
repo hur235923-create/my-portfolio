@@ -1,0 +1,22 @@
+
+/* ============================================================
+   Reveal utilities (.js 게이팅 — JS-off 시 가시)
+   ============================================================ */
+.js .reveal { opacity: 0; transform: translateY(34px); }
+.js .reveal-img { overflow: hidden; }
+.js .reveal-img img { opacity: 0; transform: scale(1.14); }
+.js .reveal-clip { opacity: 0; clip-path: inset(0 0 100% 0); will-change: clip-path; }
+.js .hero__title .line > span,
+.js .hero__kicker span,
+.js .hero__sub { opacity: 0; }
+/* translate 히든은 JS(gsap)가 소유 — CSS %와 gsap yPercent 혼용 금지 */
+
+/* ============================================================
+   WebGL 히어로 캔버스 (img 위에 페이드인, 실패 시 숨김)
+   ============================================================ */
+.hero__gl {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 1; display: block; opacity: 0;
+  transition: opacity 1.1s var(--ease);
+}
+.hero__gl.is-ready { opacity: 1; }

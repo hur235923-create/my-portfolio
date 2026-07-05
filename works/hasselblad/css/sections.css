@@ -1,0 +1,112 @@
+
+/* ============================================================
+   HERITAGE / ABOUT
+   ============================================================ */
+.heritage { background: var(--graphite); padding: clamp(6rem, 14vh, 12rem) var(--pad); }
+.heritage__head { max-width: var(--maxw); margin: 0 auto clamp(3rem, 7vh, 6rem); }
+.heritage__title { font-size: clamp(2.2rem, 6vw, 5rem); }
+.heritage__grid {
+  max-width: var(--maxw); margin: 0 auto;
+  display: grid; grid-template-columns: 0.8fr 1.1fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: center;
+}
+.heritage__fig { overflow: hidden; border-radius: 2px; }
+.heritage__fig img { object-fit: cover; will-change: transform; }
+.heritage__fig--tall img { aspect-ratio: 3/4; }
+.heritage__fig--wide { align-self: stretch; }
+.heritage__fig--wide img { height: 100%; aspect-ratio: 4/5; }
+.heritage__text { padding: 1rem 0; }
+.counter-line { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.6rem; }
+.counter { font-family: var(--serif); font-size: clamp(3rem, 8vw, 6rem); line-height: 1; color: var(--paper); font-weight: 500; }
+.counter-label { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+
+/* ============================================================
+   PRODUCTS — 가로 핀 쇼케이스
+   ============================================================ */
+.products { background: var(--ink); padding: clamp(6rem, 14vh, 12rem) 0 0; overflow: hidden; }
+.products__intro { max-width: var(--maxw); margin: 0 auto clamp(3rem, 7vh, 5rem); padding: 0 var(--pad); }
+.products__title { font-size: clamp(2.2rem, 6vw, 5rem); }
+
+.showcase { position: relative; min-height: 100vh; display: flex; align-items: center; }
+.showcase__track { display: flex; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding: 0 var(--pad) clamp(2rem, 6vh, 5rem); width: max-content; will-change: transform; }
+.card {
+  flex: 0 0 min(86vw, 1080px);
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.5rem, 3vw, 3.5rem); align-items: center;
+}
+.card__media { overflow: hidden; border-radius: 2px; background: var(--panel); }
+.card__media img { aspect-ratio: 4/3; object-fit: cover; will-change: transform; transition: transform 0.9s var(--ease); }
+.card:hover .card__media img { transform: scale(1.04); }
+.card__no { font-family: var(--serif); font-size: 0.9rem; color: var(--accent); display: block; margin-bottom: 1rem; }
+.card__name { font-size: clamp(1.8rem, 4vw, 3.2rem); letter-spacing: -0.01em; margin-bottom: 1.4rem; }
+.card__desc { color: var(--muted); max-width: 42ch; }
+
+/* ============================================================
+   INSPIRATION
+   ============================================================ */
+.inspiration { background: var(--ink); padding: clamp(4rem, 10vh, 9rem) var(--pad) clamp(6rem, 14vh, 12rem); }
+.inspiration__head { max-width: var(--maxw); margin: 0 auto clamp(3rem, 7vh, 5rem); }
+.inspiration__title { font-size: clamp(2.2rem, 6vw, 5rem); }
+.stories {
+  max-width: var(--maxw); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(1.4rem, 3vw, 3rem);
+}
+.story { grid-column: span 2; }
+.story--feature { grid-column: span 6; display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+.story__media { overflow: hidden; border-radius: 2px; }
+.story__media img { aspect-ratio: 4/3; object-fit: cover; will-change: transform; transition: transform 1s var(--ease); }
+.story:hover .story__media img { transform: scale(1.05); }
+.story--feature .story__media img { aspect-ratio: 16/9; }
+.story__cap h3 { font-size: clamp(1.3rem, 2.6vw, 2.1rem); margin: 1.4rem 0 0.8rem; }
+.story--feature .story__cap h3 { margin-top: 0; }
+.story__cap p { color: var(--muted); max-width: 46ch; }
+
+/* ============================================================
+   AMBASSADORS
+   ============================================================ */
+.ambassadors {
+  background: var(--graphite); padding: clamp(6rem, 14vh, 12rem) var(--pad);
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center;
+  max-width: none;
+}
+.ambassadors__text { max-width: 620px; justify-self: end; }
+.ambassadors__title { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 1.6rem; }
+.ambassadors__quote { margin-top: 2.6rem; border-left: 2px solid var(--accent); padding-left: 1.6rem; }
+.ambassadors__quote blockquote { font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 2.4vw, 1.7rem); line-height: 1.4; color: var(--paper); }
+.ambassadors__quote figcaption { margin-top: 1rem; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); }
+.ambassadors__media { position: relative; height: clamp(360px, 52vh, 620px); }
+.ambassadors__fig { position: absolute; overflow: hidden; border-radius: 2px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+.ambassadors__fig img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.ambassadors__fig--a { width: 62%; height: 78%; top: 0; left: 0; }
+.ambassadors__fig--b { width: 50%; height: 42%; bottom: 0; right: 0; }
+
+/* ============================================================
+   DISCOVER GALLERY
+   ============================================================ */
+.discover { background: var(--ink); padding: clamp(4rem, 10vh, 9rem) var(--pad) clamp(6rem, 14vh, 12rem); }
+.discover__head { max-width: var(--maxw); margin: 0 auto clamp(3rem, 7vh, 5rem); }
+.discover__title { font-size: clamp(2.2rem, 6vw, 5rem); margin-bottom: 1.4rem; }
+.gallery {
+  max-width: var(--maxw); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(180px, 22vw, 320px); gap: clamp(0.8rem, 1.6vw, 1.4rem);
+}
+.gallery__item { position: relative; overflow: hidden; border-radius: 2px; height: 100%; }
+.gallery__item[data-span="2"] { grid-column: span 2; grid-row: span 1; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; will-change: transform; transition: transform 0.9s var(--ease); }
+.gallery__item:hover img { transform: scale(1.06); }
+.gallery__item figcaption {
+  position: absolute; left: 0; bottom: 0; padding: 1.4rem; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--paper);
+  background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent); width: 100%;
+  opacity: 0; transform: translateY(8px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.gallery__item:hover figcaption { opacity: 1; transform: none; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { background: var(--ink); border-top: 1px solid var(--line-soft); padding: clamp(4rem, 9vh, 7rem) var(--pad) 3rem; }
+.footer__top { max-width: var(--maxw); margin: 0 auto; text-align: center; }
+.footer__mark { font-family: var(--serif); font-size: clamp(2.4rem, 9vw, 7rem); letter-spacing: 0.12em; font-weight: 600; line-height: 1; }
+.footer__tag { font-family: var(--script); font-size: clamp(1.3rem, 3vw, 2rem); color: var(--accent); margin-top: 0.6rem; }
+.footer__links { display: flex; justify-content: center; gap: clamp(1.4rem, 4vw, 3rem); margin: 2.6rem 0; }
+.footer__links a { font-size: 0.78rem; letter-spacing: 0.16em; color: var(--muted); transition: color 0.3s; }
+.footer__links a:hover { color: var(--paper); }
+.footer__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; max-width: var(--maxw); margin: 0 auto; padding-top: 2rem; border-top: 1px solid var(--line-soft); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--muted); }

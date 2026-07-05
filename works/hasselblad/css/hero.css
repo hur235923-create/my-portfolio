@@ -1,0 +1,22 @@
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { position: relative; height: 100vh; min-height: 640px; overflow: hidden; display: flex; align-items: flex-end; }
+.hero__media { position: absolute; inset: -6% 0; z-index: 0; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); will-change: transform; }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.2) 40%, rgba(11,11,12,0.85) 100%); }
+.hero__glow { position: absolute; left: 50%; top: 38%; width: 60vw; height: 60vw; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(194,169,143,0.16), transparent 60%); pointer-events: none; }
+
+.hero__copy { position: relative; z-index: 2; padding: 0 var(--pad) clamp(4rem, 12vh, 9rem); width: 100%; }
+.hero__kicker { font-family: var(--script); font-size: clamp(1.6rem, 4vw, 2.8rem); color: var(--accent); line-height: 1; margin-bottom: 0.6rem; }
+.hero__kicker span { display: inline-block; }
+.hero__title { font-size: clamp(3rem, 11vw, 10rem); font-weight: 500; line-height: 0.96; letter-spacing: -0.03em; }
+.hero__title .line { display: block; overflow: hidden; }
+.hero__title .line > span { display: block; }
+.hero__title .line:nth-child(2) > span { font-style: italic; color: var(--accent); }
+.hero__sub { margin-top: 1.4rem; font-size: clamp(0.9rem, 1.6vw, 1.15rem); letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+
+.hero__scroll { position: absolute; right: var(--pad); bottom: clamp(2rem, 6vh, 4rem); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; font-size: 0.62rem; letter-spacing: 0.3em; color: var(--muted); }
+.hero__scroll-line { width: 1px; height: 60px; background: linear-gradient(var(--accent), transparent); transform-origin: top; animation: scrollPulse 2.4s var(--ease) infinite; }
+@keyframes scrollPulse { 0%,100% { transform: scaleY(0.4); opacity: 0.4; } 50% { transform: scaleY(1); opacity: 1; } }
