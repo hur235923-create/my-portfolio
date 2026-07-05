@@ -1,0 +1,15 @@
+
+/* 섹션 기본 */
+.cs-sec{max-width:var(--maxw);margin-inline:auto;padding:var(--sec-y) var(--pad);
+  min-height:60vh;}
+.cs-sec h2{font-weight:200;font-size:clamp(1.7rem,1.2rem + 2.2vw,2.8rem);line-height:1.15;}
+.cs-kicker{font:400 .76rem/1 var(--sans);letter-spacing:.22em;color:var(--violet);
+  display:block;margin-bottom:1rem;text-transform:uppercase;}
+
+/* 유리 카드(분석 구간 가독성) */
+.cs-card{background:var(--glass);border:1px solid var(--glass-line);border-radius:1rem;
+  padding:clamp(1.4rem,3vw,2.2rem);backdrop-filter:blur(4px);}
+
+/* 리빌 */
+.cs-reveal{opacity:0;transform:translateY(28px);}
+html.js .cs-reveal{will-change:opacity,transform;}
