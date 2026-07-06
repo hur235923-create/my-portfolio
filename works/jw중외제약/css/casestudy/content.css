@@ -33,11 +33,34 @@
 .cs-strat{list-style:none;display:grid;gap:.8rem;}
 .cs-strat li{padding:1rem 1.2rem;border:1px solid var(--line-d);border-radius:.7rem;background:rgba(7,34,58,.3);}
 .cs-strat b{color:var(--cyan);}
-.cs-uigrid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2rem;}
 .cs-shot img,.cs-final img,.cs-final-row img{width:100%;height:100%;object-fit:cover;
   border-radius:.8rem;border:1px solid var(--glass-line);display:block;}
-.cs-shot figcaption{margin-top:.7rem;color:#c8d8e6;font-size:.92rem;}
-.cs-shot b{color:var(--cyan);}
+
+/* 07 · UI Design — 흐름 타임라인 */
+#sec-07 .cs-stream07{position:relative;margin-top:2.4rem;padding:1.4rem clamp(.4rem,2vw,1.4rem);
+  background:linear-gradient(160deg,var(--abyss2),var(--deep));border:1px solid var(--glass-line);border-radius:1rem;overflow:hidden;}
+#sec-07 .cs-stream07__line{position:absolute;left:50%;top:1rem;bottom:1rem;width:2px;transform:translateX(-50%);
+  background:linear-gradient(var(--cyan),var(--deep));opacity:.5;}
+#sec-07 .cs-node07{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,4vw,3rem);align-items:center;margin-bottom:clamp(1.8rem,4.5vh,3rem);position:relative;}
+#sec-07 .cs-node07:last-child{margin-bottom:0;}
+#sec-07 .cs-node07__tick{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:var(--cyan);transform:translate(-50%,-50%);box-shadow:0 0 12px var(--cyan);z-index:2;}
+#sec-07 .cs-node07__card{overflow:hidden;border-radius:.8rem;border:1px solid var(--glass-line);box-shadow:0 12px 30px rgba(4,19,30,.45);}
+#sec-07 .cs-node07__card img{display:block;width:100%;height:clamp(150px,18vw,220px);object-fit:cover;object-position:top;}
+#sec-07 .cs-node07 figcaption{color:var(--foam);font-size:.9rem;font-weight:300;line-height:1.6;}
+#sec-07 .cs-node07 figcaption b{display:block;color:var(--cyan);font-weight:500;margin-bottom:.35rem;letter-spacing:.02em;}
+/* 좌/우 교대: 짝수 노드는 카드를 오른쪽, 캡션을 왼쪽으로 */
+#sec-07 .cs-node07:nth-child(even) .cs-node07__card{grid-column:2;grid-row:1;}
+#sec-07 .cs-node07:nth-child(even) figcaption{grid-column:1;grid-row:1;text-align:right;}
+
+@media (max-width:720px){
+  #sec-07 .cs-stream07__line{left:14px;}
+  #sec-07 .cs-node07,#sec-07 .cs-node07:nth-child(even) *{grid-template-columns:1fr;}
+  #sec-07 .cs-node07{grid-template-columns:1fr;padding-left:34px;gap:.6rem;}
+  #sec-07 .cs-node07__tick{left:14px;}
+  #sec-07 .cs-node07:nth-child(even) .cs-node07__card,
+  #sec-07 .cs-node07:nth-child(even) figcaption{grid-column:1;grid-row:auto;text-align:left;}
+}
+
 .cs-final{margin-top:1.8rem;}
 .cs-final-row{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem;margin-top:1.2rem;}
 .cs-livecta{display:inline-block;margin-top:2rem;padding:.9rem 1.6rem;border:1px solid var(--cyan);

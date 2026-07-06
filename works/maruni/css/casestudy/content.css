@@ -44,11 +44,23 @@
 .cs-strat b{color:var(--walnut);font-weight:600;}
 
 /* 07 · UI Design / 09 · Final Design */
-.cs-uigrid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2rem;}
 .cs-shot img,.cs-final img,.cs-final-row img{width:100%;height:100%;object-fit:cover;
   border-radius:.8rem;border:1px solid var(--glass-line);display:block;}
-.cs-shot figcaption{margin-top:.7rem;color:var(--ink-soft);font-size:.94rem;font-weight:400;}
-.cs-shot b{color:var(--walnut);font-weight:600;}
+
+/* 07 · UI Design — 갤러리 벽 */
+#sec-07 .cs-wall07{columns:2;column-gap:clamp(1.6rem,4vw,3.4rem);margin-top:2.4rem;}
+#sec-07 .cs-frame07{break-inside:avoid;margin:0 0 clamp(1.6rem,4vw,3.2rem);}
+#sec-07 .cs-frame07__mat{display:block;background:#fff;padding:clamp(.5rem,1.4vw,.9rem);border:1px solid var(--sand);box-shadow:0 16px 38px rgba(34,28,20,.12);}
+#sec-07 .cs-frame07__mat img{display:block;width:100%;object-fit:cover;object-position:top;}
+#sec-07 .cs-frame07--lg img{height:clamp(230px,30vw,360px);}
+#sec-07 .cs-frame07--sm img{height:clamp(150px,20vw,240px);}
+#sec-07 .cs-frame07 figcaption{font-family:var(--display);font-size:1.02rem;line-height:1.55;color:var(--ink-soft);margin-top:.85rem;}
+#sec-07 .cs-frame07 figcaption b{color:var(--walnut);font-weight:600;letter-spacing:.03em;margin-right:.4rem;}
+
+@media (max-width:720px){
+  #sec-07 .cs-wall07{columns:1;}
+}
+
 .cs-final{margin-top:1.8rem;}
 .cs-final-row{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem;margin-top:1.2rem;}
 .cs-livecta{display:inline-block;margin-top:2rem;padding:.9rem 1.8rem;border:1px solid var(--walnut);
