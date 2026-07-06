@@ -45,7 +45,8 @@
 
 /* 07 · UI Design — 필름 스트립 / 컨택트 시트 */
 #sec-07 .cs-film07{margin-top:2.4rem;background:var(--ink);border:1px solid var(--line-d);border-radius:.5rem;padding:1rem clamp(.6rem,2vw,1.2rem) 1.2rem;}
-#sec-07 .cs-film07__strip{position:relative;display:flex;gap:clamp(.8rem,2vw,1.4rem);overflow-x:auto;overflow-y:hidden;padding:16px 2px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+#sec-07 .cs-film07__strip{position:relative;display:flex;gap:clamp(.8rem,2vw,1.4rem);overflow-x:auto;overflow-y:hidden;padding:16px 2px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;}
+#sec-07 .cs-film07__strip::-webkit-scrollbar{display:none;}
 #sec-07 .cs-film07__strip.is-hoverpan{scroll-snap-type:none;cursor:ew-resize;}
 #sec-07 .cs-film07__strip::before,#sec-07 .cs-film07__strip::after{content:"";position:absolute;left:0;right:0;height:9px;background:repeating-linear-gradient(90deg,var(--ink) 0 7px,transparent 7px 18px);pointer-events:none;}
 #sec-07 .cs-film07__strip::before{top:0;} #sec-07 .cs-film07__strip::after{bottom:0;}
