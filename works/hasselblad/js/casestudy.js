@@ -35,4 +35,35 @@
       });
     });
   }
+
+  // 07 필름 스트립: 커서를 올려 좌우로 움직이면 그 위치로 가로 패닝(hover-to-scroll)
+  const strip = document.querySelector("#sec-07 .cs-film07__strip");
+  const fine = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+  if (strip && !reduce && fine) {
+    strip.classList.add("is-hoverpan"); // CSS에서 scroll-snap 해제
+    let targetX = 0, curX = 0, active = false, raf = 0;
+    const maxScroll = () => strip.scrollWidth - strip.clientWidth;
+    const loop = () => {
+      curX += (targetX - curX) * 0.12;
+      if (Math.abs(targetX - curX) > 0.5) {
+        strip.scrollLeft = curX;
+        raf = requestAnimationFrame(loop);
+      } else {
+        strip.scrollLeft = curX = targetX;
+        active = false;
+      }
+    };
+    strip.addEventListener("mousemove", (e) => {
+      const max = maxScroll();
+      if (max <= 0) return;
+      const r = strip.getBoundingClientRect();
+      const ratio = Math.min(Math.max((e.clientX - r.left) / r.width, 0), 1);
+      targetX = ratio * max;
+      if (!active) { active = true; raf = requestAnimationFrame(loop); }
+    });
+    strip.addEventListener("mouseleave", () => {
+      cancelAnimationFrame(raf);
+      active = false;
+    });
+  }
 })();
