@@ -40,11 +40,33 @@
 .cs-strat b{color:var(--violet);font-weight:500;}
 
 /* 07 · UI Design / 09 · Final Design */
-.cs-uigrid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2rem;}
 .cs-shot img,.cs-final img,.cs-final-row img{width:100%;height:100%;object-fit:cover;
   border-radius:.8rem;border:1px solid var(--glass-line);display:block;}
-.cs-shot figcaption{margin-top:.7rem;color:var(--ink-soft);font-size:.92rem;font-weight:300;}
-.cs-shot b{color:var(--violet);font-weight:500;}
+
+/* 07 · UI Design — 사운드 리듬(스크롤 프레임) */
+#sec-07 .cs-flow07{position:relative;margin-top:2.4rem;}
+#sec-07 .cs-flow07__line{position:absolute;left:50%;top:.5rem;bottom:.5rem;width:1px;background:var(--violet);opacity:.28;transform:translateX(-50%);}
+#sec-07 .cs-sf{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.2rem,4vw,3rem);align-items:center;margin-bottom:clamp(2rem,5vh,3.6rem);position:relative;}
+#sec-07 .cs-sf::before{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;background:var(--violet-lit);transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(123,70,196,.18);}
+#sec-07 .cs-sf--r{direction:rtl;}
+#sec-07 .cs-sf--r > *{direction:ltr;}
+#sec-07 .cs-sf__win{--winh:clamp(190px,24vw,290px);height:var(--winh);overflow:hidden;border-radius:.7rem;background:#fff;border:1px solid var(--glass-line);box-shadow:0 14px 34px rgba(75,30,120,.16);}
+#sec-07 .cs-sf__win img{width:100%;display:block;transition:transform 5s var(--ease);}
+#sec-07 .cs-sf__win:hover img{transform:translateY(calc(-100% + var(--winh)));}
+#sec-07 .cs-sf figcaption{color:var(--ink-soft);font-size:.92rem;font-weight:300;line-height:1.6;}
+#sec-07 .cs-sf figcaption b{display:block;color:var(--violet);font-weight:500;margin-bottom:.35rem;letter-spacing:.02em;}
+
+@media (max-width:720px){
+  #sec-07 .cs-flow07__line{display:none;}
+  #sec-07 .cs-sf,#sec-07 .cs-sf--r{grid-template-columns:1fr;direction:ltr;gap:.9rem;}
+  #sec-07 .cs-sf::before{display:none;}
+  #sec-07 .cs-sf__win{--winh:auto;height:auto;max-height:60vh;overflow:auto;}
+  #sec-07 .cs-sf__win img{transition:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  #sec-07 .cs-sf__win img,#sec-07 .cs-sf__win:hover img{transition:none;transform:none;}
+}
+
 .cs-final{margin-top:1.8rem;}
 .cs-final-row{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem;margin-top:1.2rem;}
 .cs-livecta{display:inline-block;margin-top:2rem;padding:.9rem 1.8rem;border:1px solid var(--violet);
