@@ -107,15 +107,16 @@ if (hb_reduce || !hb_pre) {
 if (!hb_reduce) {
   gsap.utils.toArray(".reveal").forEach((el) => {
     gsap.to(el, {
-      opacity: 1, y: 0, duration: 1, ease: "power3.out",
-      scrollTrigger: { trigger: el, start: "top 86%" },
+      opacity: 1, y: 0, duration: 0.6, ease: "power3.out",
+      scrollTrigger: { trigger: el, start: "top 90%" },
     });
   });
   gsap.utils.toArray(".reveal-clip").forEach((el) => {
-    gsap.to(el, {
-      opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.1, ease: "power4.out",
-      scrollTrigger: { trigger: el, start: "top 86%" },
-    });
+    // clip-path는 시작·끝을 4값 %로 명시해야 GSAP이 중간값을 보간(fromTo) — 안 그러면 끝에서 툭 열림
+    gsap.fromTo(el,
+      { opacity: 0, clipPath: "inset(0% 0% 100% 0%)" },
+      { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power4.out", delay: 0.08,
+        scrollTrigger: { trigger: el, start: "top 90%" } });
   });
   gsap.utils.toArray(".reveal-img").forEach((fig) => {
     const img = fig.querySelector("img");
